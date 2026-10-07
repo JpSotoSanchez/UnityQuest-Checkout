@@ -26,8 +26,8 @@ Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout
 ### Demo Video
 Link: 
 ### Design document
-Link: 
+Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/design.md
 ### Testing Report
-Link: 
+Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/testing.md
 ### AI logs
-Link: 
+Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/ai-use.md
