@@ -1,17 +1,10 @@
 {
-  "Kits":
-  [
-    {
-      "firstName": "John",
-      "lastName": "Doe"
-    },
-    {
-      "firstName": "Anna",
-      "lastName": "Smith"
-    },
-    {
-      "firstName": "Peter",
-      "lastName": "Jones"
-    }
+  "kits": [
+    { "kitNumber": 1, "available": 0 },
+    { "kitNumber": 2, "available": 1 },
+    { "kitNumber": 3, "available": 2 },
+    { "kitNumber": 4, "available": 0 },
+    { "kitNumber": 5, "available": 1 },
+    { "kitNumber": 6, "available": 0 }
   ]
 }
