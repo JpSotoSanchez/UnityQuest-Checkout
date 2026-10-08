@@ -9,12 +9,12 @@ public class JSONReader : MonoBehaviour
     {
         Kits kitsInJson = JsonUtility.FromJson<Kits>(jsonFile.text);
 
-        foreach (Kit kit in kitsInJson.kits)
+        foreach (KitData kit in kitsInJson.kits)
         {
             Debug.Log("Found kit: " + kit.kitNumber + " " + kit.available);
         }
     }
-    private void WriteData(Kit kit)
+    private void WriteData(KitData kit)
     {
         string json = JsonUtility.ToJson(kit, true);
         File.WriteAllText("", json);
