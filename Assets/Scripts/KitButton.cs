@@ -4,43 +4,61 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class KitButton : MonoBehaviour
 {
-    public int kitNumber;            
-    public Text label;               
-    private Button button;
-
+    public int kitNumber;
+    public Text label;
     public CanvasManager canvasManager;
 
-    void Start()
+    private Button button;
+    private KitData currentKit;
+
+    void Awake()
     {
         button = GetComponent<Button>();
+        button.onClick.AddListener(OnClick);   // added only once
+    }
+
+    void OnClick()
+    {
+        // Only available kits open the menu
+        if (currentKit != null && currentKit.available == 0)
+        {
+            canvasManager.toMenu();
+        }
     }
 
     public void Apply(KitData kit)
     {
-        var colors = button.colors;   
-
+        currentKit = kit;
+        ColorBlock colors = button.colors;
         Color c = Color.white;
+
         if (kit != null)
         {
-            switch (kit.available)
+            if (kit.available == 0)
             {
-                case 0: 
-                    c = Color.green;  
-                    button.onClick.AddListener(delegate{canvasManager.toMenu();});
-                break;
-                case 1: 
-                    c = Color.yellow; 
-                break;
-                case 2: 
-                    c = Color.red;
-                break;
+                c = Color.green;
+            }
+            else if (kit.available == 1)
+            {
+                c = Color.yellow;
+            }
+            else if (kit.available == 2)
+            {
+                c = Color.red;
+            }
+            else if (kit.available == 3)
+            {
+                c = new Color(1f, 0.5f, 0f); // orange
             }
         }
 
         colors.normalColor = c;
-        colors.selectedColor = c;     
+        colors.selectedColor = c;
         button.colors = colors;
 
-        if (label != null) label.text = "Kit " + kitNumber;
+        if (label != null)
+        {
+            label.text = "Kit " + kitNumber;
+        }
     }
 }
