@@ -1,17 +1,20 @@
 using System.IO;
 using UnityEngine;
 
-public class KitsManager : MonoBehaviour
+public class KitManager : MonoBehaviour
 {
     public TextAsset defaultJson;
+    public TextAsset ogJson;
     public KitButton[] buttons;
 
     private Kits data;
     private string path;
+    private string ogpath;
 
     void Start()
     {
         path = Path.Combine(Application.persistentDataPath, "Kits.json");
+        path = Path.Combine(Application.persistentDataPath, "KitsOg.json");
         Load();
         RefreshAll();
     }
@@ -75,5 +78,17 @@ public class KitsManager : MonoBehaviour
             KitData kit = FindKit(buttons[i].kitNumber);
             buttons[i].Apply(kit);
         }
+    }
+
+    public void ResetKits()
+    {
+        if (File.Exists(ogpath) == false)
+        {
+            File.WriteAllText(ogpath, ogJson.text);
+        }
+        string json = File.ReadAllText(ogpath);
+        data = JsonUtility.FromJson<Kits>(json);
+        string jsonOg = JsonUtility.ToJson(data, true);
+        File.WriteAllText(path, jsonOg);
     }
 }

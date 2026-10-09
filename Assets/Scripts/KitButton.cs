@@ -8,6 +8,8 @@ public class KitButton : MonoBehaviour
     public Text label;               
     private Button button;
 
+    public CanvasManager canvasManager;
+
     void Start()
     {
         button = GetComponent<Button>();
@@ -22,9 +24,16 @@ public class KitButton : MonoBehaviour
         {
             switch (kit.available)
             {
-                case 0: c = Color.green;  break;
-                case 1: c = Color.yellow; break;
-                case 2: c = Color.red;    break;
+                case 0: 
+                    c = Color.green;  
+                    button.onClick.AddListener(delegate{canvasManager.toMenu();});
+                break;
+                case 1: 
+                    c = Color.yellow; 
+                break;
+                case 2: 
+                    c = Color.red;
+                break;
             }
         }
 
