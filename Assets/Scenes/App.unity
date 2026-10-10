@@ -803,6 +803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KitButton
   kitNumber: 3
   label: {fileID: 0}
+  canvasManager: {fileID: 763851508}
 --- !u!1 &158987273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,6 +1198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KitButton
   kitNumber: 4
   label: {fileID: 0}
+  canvasManager: {fileID: 763851508}
 --- !u!1 &241278218
 GameObject:
   m_ObjectHideFlags: 0
@@ -3961,6 +3963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KitButton
   kitNumber: 6
   label: {fileID: 0}
+  canvasManager: {fileID: 763851508}
 --- !u!1 &527398979
 GameObject:
   m_ObjectHideFlags: 0
@@ -5242,6 +5245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KitButton
   kitNumber: 1
   label: {fileID: 0}
+  canvasManager: {fileID: 763851508}
 --- !u!1 &707195819
 GameObject:
   m_ObjectHideFlags: 0
@@ -10588,6 +10592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KitButton
   kitNumber: 5
   label: {fileID: 0}
+  canvasManager: {fileID: 763851508}
 --- !u!1 &1524282591
 GameObject:
   m_ObjectHideFlags: 0
@@ -13727,6 +13732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KitButton
   kitNumber: 2
   label: {fileID: 0}
+  canvasManager: {fileID: 763851508}
 --- !u!1 &2141263000
 GameObject:
   m_ObjectHideFlags: 0

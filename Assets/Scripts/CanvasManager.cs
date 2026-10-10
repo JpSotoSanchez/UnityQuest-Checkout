@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
-
-    [Header("Panels")]
+    [Header("Canvas Reference")]
     public Canvas canvas;
 
     [Header("Panels")]
@@ -16,45 +15,79 @@ public class CanvasManager : MonoBehaviour
     public GameObject charging; 
     public GameObject noComplete; 
 
-    // 1. Declaras el array vacío
     private GameObject[] panels;
 
     void Awake()
     {
-        // 2. Lo inicializas con las referencias cuando el script despierta
         panels = new GameObject[] { 
             selection, duration, kitCheck, orderCheck, 
             confirmation, noAvailable, charging, noComplete 
         };
     }
 
-
-
-
-
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void resetScreen()
     {
-        for(int i = 0; i < panels.Length; i++)
+        for (int i = 0; i < panels.Length; i++)
         {
-            panels[i].SetActive(false);
+            if (panels[i] != null)
+            {
+                panels[i].SetActive(false);
+            }
         }
     }
 
-    public void toMenu()
+    private void OpenPanel(GameObject targetPanel)
     {
         resetScreen();
-        selection.SetActive(true);
+
+        if (targetPanel != null)
+        {
+            targetPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("El panel que intentas abrir no está asignado en el Inspector.");
+        }
     }
 
 
+    public void toSelection()
+    {
+        OpenPanel(selection);
+    }
+
+    public void toDuration()
+    {
+        OpenPanel(duration);
+    }
+
+    public void toKitCheck()
+    {
+        OpenPanel(kitCheck);
+    }
+
+    public void toOrderCheck()
+    {
+        OpenPanel(orderCheck);
+    }
+
+    public void toConfirmation()
+    {
+        OpenPanel(confirmation);
+    }
+
+    public void toNoAvailable()
+    {
+        OpenPanel(noAvailable);
+    }
+
+    public void toCharging()
+    {
+        OpenPanel(charging);
+    }
+
+    public void toNoComplete()
+    {
+        OpenPanel(noComplete);
+    }
 }

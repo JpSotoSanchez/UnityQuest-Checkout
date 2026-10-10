@@ -81,6 +81,6 @@ public class comboTrial : MonoBehaviour
     void ResetPrototype()
     {
         kitManager.ResetKits();
-        canvasManager.toMenu();
+        canvasManager.toSelection();
     }
 }

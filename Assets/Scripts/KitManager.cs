@@ -168,4 +168,19 @@ public class KitManager : MonoBehaviour
         Load();
         RefreshAll();
     }
+
+    public void ReserveKit(int kitNumber, DateTime until, bool complete)
+{
+    KitData kit = FindKit(kitNumber);
+    if (kit == null)
+    {
+        return;
+    }
+
+    kit.available = 2;
+    kit.SetDate(until);
+    kit.complete = complete;
+    Save();
+    RefreshAll();
+}
 }
