@@ -15,9 +15,9 @@ public class kitSelector
     public int minute;
     public int second;
 
-    static void KitSelected(int n)
+    void KitSelected(int n)
     {
-        this.kit = n;
+        this.kitSelected = n;
     }
     void AvailableSelection()
     {
@@ -28,7 +28,7 @@ public class kitSelector
         
     }
 
-    static void YearSelected(int n)
+    void YearSelected(int n)
     {
         this.year = n;
     }
