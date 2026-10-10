@@ -14,16 +14,6 @@ public class KitButton : MonoBehaviour
     void Awake()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(OnClick);   // added only once
-    }
-
-    void OnClick()
-    {
-        // Only available kits open the menu
-        if (currentKit != null && currentKit.available == 0)
-        {
-            canvasManager.toMenu();
-        }
     }
 
     public void Apply(KitData kit)
