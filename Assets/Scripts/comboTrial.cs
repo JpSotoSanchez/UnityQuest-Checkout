@@ -61,8 +61,6 @@ public class comboTrial : MonoBehaviour
         isComboActive = true; 
     }
 
-    
-
     void ResetCombo()
     {
         

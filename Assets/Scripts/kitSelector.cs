@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class kitSelector : MonoBehaviour
+public class KitSelector : MonoBehaviour
 {
     [Header("References")]
     public KitManager kitManager;

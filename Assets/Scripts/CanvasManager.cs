@@ -5,6 +5,9 @@ public class CanvasManager : MonoBehaviour
     [Header("Canvas Reference")]
     public Canvas canvas;
 
+    [Header("Kit selector")]
+    public KitSelector kitSelector;
+
     [Header("Panels")]
     public GameObject selection; 
     public GameObject duration; 
@@ -68,7 +71,10 @@ public class CanvasManager : MonoBehaviour
 
     public void toOrderCheck()
     {
-        OpenPanel(orderCheck);
+        if (kitSelector.complete)
+        {
+            OpenPanel(orderCheck);
+        }
     }
 
     public void toConfirmation()
