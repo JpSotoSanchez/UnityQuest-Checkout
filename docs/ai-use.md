@@ -22,6 +22,10 @@ For each relevant use, the team records the tool, date, teammate, purpose, promp
 | 7 | 2026-10-10 | José Pablo Soto Sánchez | Testing report template | Testing support |
 | 8 | 2026-10-10 | José Pablo Soto Sánchez | Design justification template | Design support |
 | 9 | 2026-10-10 | José Pablo Soto Sánchez | Reserving an occupied kit (date + duration) and NOT AVAILABLE flow | Unity code, debugging |
+| 10 | 2026-10-10 | Jaime Rincón Burboa | Rounded buttons with 9-Slice | Design support |
+| 11 | 2026-10-10 | Jaime Rincón Burboa | Larger TMP Dropdown options and faster scroll | Design support |
+| 12 | 2026-10-10 | Jaime Rincón Burboa | Checkboxes (Toggle) for the Kit Check scene | Design support |
+| 13 | 2026-10-10 | Jaime Rincón Burboa | Converting OTF fonts for TextMeshPro | Design support |
 
 ---
 
@@ -380,3 +384,161 @@ The AI proposed a solution that the team had to correct so it fit the project an
 - The team decided to: use AI to help think through the flow, because the team had doubts about how the parts connected.
 - The team verified the result by: testing everything before asking the AI, and then correcting the AI's solution until it fit the project and the data was saved correctly.
 - One thing the team still needs to check: that the dates match and that the data is saved correspondingly.
+
+---
+
+## Entry 10: Rounded buttons with 9-Slice
+
+- *Tool:* Gemini 3.5 Thinking (Google)
+- *Date:* 2026-10-10
+- *Teammate:* Jaime Rincón Burboa
+- *Purpose:* Design support. The team wanted the Unity buttons to have rounded corners instead of square ones.
+- *Related work:* *(fill in: button prefabs, e.g. Assets/Prefabs/...)*
+
+*Prompt*
+
+> En Unity puedo hacer que los botones tengan bordes redondos en vez de ser cuadrados?
+
+*(Attached: nothing.)*
+
+*Response used*
+
+The AI explained two options: a 9-Slice sprite in uGUI (the traditional Canvas) and the Border Radius property in UI Toolkit. For uGUI it gave four steps: set the sprite's Texture Type to Sprite (2D and UI), adjust the four guides in the Sprite Editor so the curves stay inside the corners, assign the sprite to the button's Source Image, and change Image Type to Sliced. The team used the uGUI 9-Slice option. The UI Toolkit option was not used.
+
+*Modifications*
+
+The team did not reject or change anything in the AI's answer. The sprite was not made by the AI: the team downloaded it. The team applied the result to its buttons and then turned them into prefabs.
+
+*Verification*
+
+- [x] What the team tested: following the AI's steps on the team's buttons with the downloaded sprite and Image Type set to Sliced.
+- [x] What actually happened: the verification checks listed in each step worked correctly. *(fill in: what was seen, e.g. corners stay rounded when the button is resized)*
+
+*What the team can explain*
+
+- The team used AI to: learn how to make rounded buttons in Unity.
+- The team decided to: use uGUI with 9-Slice and a downloaded sprite, because *(fill in)*.
+- The team verified the result by: *(fill in)*
+- One thing the team still needs to check: *(fill in)*
+
+---
+
+## Entry 11: Larger TMP Dropdown options and faster scroll
+
+- *Tool:* Gemini 3.5 Thinking (Google)
+- *Date:* 2026-10-10
+- *Teammate:* Jaime Rincón Burboa
+- *Purpose:* Design support. The team wanted the options of a TextMeshPro Dropdown to be bigger and the list to scroll faster.
+- *Related work:* App scene, duration panel dropdown *(fill in: scene and prefab paths, e.g. Assets/Scenes/...)*. The same dropdown composition was reused in other panels with some adjustments *(fill in: which panels)*.
+
+*Prompt*
+
+The prompts were sent in sequence in one conversation:
+
+> En el Unity text Mesh Pro Dropdown como puedo hacer que las opciones que aparecen se hagan más grandes?
+>
+> Como puedo hacer que vaya más rápido el scroll del dropdown
+
+*(Attached: nothing.)*
+
+*Response used*
+
+For the size, the AI explained that the Template object has to be made visible temporarily, that the Height of Content and Item must have the same value, and that the font size is changed in Item Label. For the scroll speed, it explained that the Scroll Sensitivity of the Scroll Rect on the Template controls it, and it suggested an optional inertia and Deceleration Rate adjustment. The team used the steps for Content, Item, Item Label and Scroll Sensitivity. The team did not use the optional inertia adjustment.
+
+*Modifications*
+
+The team followed the steps but changed the final values. It used 280x200 *(fill in: which object this size belongs to)* and a Template Height of 500, so that several options are visible at first in the dropdown. After testing in Play, it set Scroll Sensitivity to 20. The inertia was not added.
+
+*Verification*
+
+- [x] What the team tested: the dropdown in Play, adjusting the scroll speed until it felt right.
+- [x] What actually happened: with Scroll Sensitivity at 20 the scroll speed was good for the team and that value was kept.
+- [ ] Several options are visible at first with the Template Height of 500. *(fill in)*
+- [ ] The reused dropdowns in the other panels work and look correct. *(fill in)*
+
+*What the team can explain*
+
+- The team used AI to: learn how to enlarge the dropdown options and speed up their scroll.
+- The team decided to: use a Template Height of 500 and a Scroll Sensitivity of 20, because several options should be visible at first and the scroll should feel good in Play.
+- The team verified the result by: testing the dropdown in Play and adjusting the scroll speed until it was comfortable.
+- One thing the team still needs to check: *(fill in)*
+
+---
+
+## Entry 12: Checkboxes (Toggle) for the Kit Check scene
+
+- *Tool:* Gemini 3.5 Thinking (Google)
+- *Date:* 2026-10-10
+- *Teammate:* Jaime Rincón Burboa
+- *Purpose:* Design support. The team wanted to create checkboxes in Unity to verify that a kit is complete, and to understand the difference between the Interactable and Is On properties of a Toggle.
+- *Related work:* Kit Check scene *(fill in: scene and prefab paths, e.g. Assets/Scenes/...)*
+
+*Prompt*
+
+The prompts were sent in sequence in one conversation:
+
+> Como puedo hacer unos checkboxes en Unity
+>
+> Whats the difference betwen Interactable and Is on?
+
+*(Attached: nothing.)*
+
+*Response used*
+
+For the first prompt, the AI explained that the standard checkbox in Unity is the Toggle from the uGUI system. It gave four steps: create the Toggle from the Hierarchy, customize the Background and Checkmark images, create a script with a public function that receives a boolean (CheckboxHandler.cs with OnToggleValueChanged), and link that function to the On Value Changed event. For the second prompt, it explained that Is On is the checked or unchecked value, while Interactable controls whether the user can change it, and gave a table with the four combinations. The team followed the steps to create the Toggles. The script with OnToggleValueChanged was not modified by the teammate who wrote this entry; it was used by the teammate in charge of the code and functionality. *(fill in: whether Interactable was used in the app, and whether the Background and Checkmark images were customized.)*
+
+*Modifications*
+
+The team did not reject anything in the AI's answer. After testing, it changed the Toggles so they start unchecked (Is On turned off), because they were starting checked. *(fill in: any other change, e.g. custom sprites, and whether the script was changed by the teammate who used it.)*
+
+*Verification*
+
+- [x] What the team tested: the checkboxes of the Kit Check scene when the scene starts.
+- [x] What actually happened: the checkboxes started with Is On checked, so the team changed them to start unchecked.
+- [ ] After the change, the checkboxes start unchecked and can be checked by the user. *(fill in)*
+- [ ] The state of the checkboxes is read correctly by the code to confirm that the kit is complete. *(fill in)*
+
+*What the team can explain*
+
+- The team used AI to: learn how to create checkboxes with the Toggle component and to understand the difference between Is On and Interactable.
+- The team decided to: start the checkboxes unchecked, because they were starting checked and the user has to verify each item of the kit.
+- The team verified the result by: testing the Kit Check scene and noticing the initial state of the checkboxes.
+- One thing the team still needs to check: *(fill in)*
+
+---
+
+## Entry 13: Converting OTF fonts for TextMeshPro
+
+- *Tool:* Gemini 3.5 Thinking (Google)
+- *Date:* 2026-10-10
+- *Teammate:* Jaime Rincón Burboa
+- *Purpose:* Design support. The team wanted to use its own .otf fonts (CreatoDisplayRegular and CreatoDisplayMedium) in the Unity app.
+- *Related work:* CreatoDisplayRegular and CreatoDisplayMedium font files and their TMP Font Assets *(fill in: paths, e.g. Assets/Fonts/...)*. The fonts are applied to the text fields, buttons and labels of the app *(fill in: scenes or prefabs)*.
+
+*Prompt*
+
+> How to transform an otf font into something unity can use?
+
+*(Attached: nothing.)*
+
+*Response used*
+
+The AI explained that Unity supports .otf files and gave two methods: TextMeshPro (converting the font into a Font Asset with the Font Asset Creator) and Legacy UI Text (dragging the .otf file directly into the Font slot). For TextMeshPro it gave four steps: import the .otf file into the Project window, open Window > TextMeshPro > Font Asset Creator, generate the font atlas (Sampling Point Size on Auto Sizing) and save it, and assign the Font Asset to the text object. The team used the TextMeshPro method with the Font Asset Creator. The Legacy UI Text method was not used.
+
+*Modifications*
+
+The team did not change any of the steps. It created Font Assets for CreatoDisplayRegular and CreatoDisplayMedium and applied them to all text fields, buttons and labels. The AI's answer did not mention the conflicts with TMP fonts described in Verification; the team solved them on its own.
+
+*Verification*
+
+- [x] What the team tested: the app with the new fonts applied to the text fields, buttons and labels.
+- [x] What actually happened: there were conflicts with the TMP fonts. The team solved them by reimporting the library *(fill in: which library, e.g. TMP Essential Resources)* and moving the imported fonts to a different location *(fill in: from where to where)*.
+- [ ] All text fields, buttons and labels show the correct font (Regular or Medium) in Play. *(fill in)*
+- [ ] Characters such as accents or ñ display correctly. *(fill in)*
+
+*What the team can explain*
+
+- The team used AI to: learn how to convert .otf fonts into something TextMeshPro can use.
+- The team decided to: use the Font Asset Creator (TextMeshPro method) with CreatoDisplayRegular and CreatoDisplayMedium, because *(fill in)*.
+- The team verified the result by: testing the app and solving the TMP font conflicts that appeared.
+- One thing the team still needs to check: *(fill in)*
