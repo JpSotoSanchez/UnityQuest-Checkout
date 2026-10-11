@@ -66,7 +66,11 @@ public class comboTrial : MonoBehaviour
         
         if(currentAction == "uuddqa")
         {
-            ResetPrototype();
+            ResetPrototypeA();
+        }
+        if(currentAction == "uuudqa")
+        {
+            ResetPrototypeB();
         }
         
 
@@ -76,9 +80,15 @@ public class comboTrial : MonoBehaviour
         Debug.Log(currentAction);
     }
 
-    void ResetPrototype()
+    void ResetPrototypeA()
     {
-        kitManager.ResetKits();
+        kitManager.ResetKitsA();
+        canvasManager.toSelection();
+    }
+
+    void ResetPrototypeB()
+    {
+        kitManager.ResetKitsB();
         canvasManager.toSelection();
     }
 }

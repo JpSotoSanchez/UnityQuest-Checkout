@@ -5,11 +5,35 @@ using UnityEngine;
 public class KitManager : MonoBehaviour
 {
     public TextAsset defaultJson;
-    public TextAsset ogJson;
+    public TextAsset ogJsonA;
+    public TextAsset ogJsonB;
     public KitButton[] buttons;
 
     private Kits data;
     private string path;
+
+    // Right-click the component header in the Inspector to run these (works outside play mode)
+    [ContextMenu("Print saved Kits.json path")]
+    private void PrintSavedPath()
+    {
+        Debug.Log(Path.Combine(Application.persistentDataPath, "Kits.json"));
+    }
+
+    [ContextMenu("Delete saved Kits.json")]
+    private void DeleteSavedFile()
+    {
+        string savedPath = Path.Combine(Application.persistentDataPath, "Kits.json");
+
+        if (File.Exists(savedPath) == true)
+        {
+            File.Delete(savedPath);
+            Debug.Log("KitManager: deleted " + savedPath);
+        }
+        else
+        {
+            Debug.Log("KitManager: no saved file at " + savedPath);
+        }
+    }
 
     void Awake()
     {
@@ -201,9 +225,15 @@ public class KitManager : MonoBehaviour
     }
 
     // Overwrites the saved file with the original JSON and reloads everything
-    public void ResetKits()
+    public void ResetKitsA()
     {
-        File.WriteAllText(path, ogJson.text);
+        File.WriteAllText(path, ogJsonA.text);
+        Load();
+        RefreshAll();
+    }
+    public void ResetKitsB()
+    {
+        File.WriteAllText(path, ogJsonB.text);
         Load();
         RefreshAll();
     }

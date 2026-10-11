@@ -27,6 +27,11 @@ public class CanvasManager : MonoBehaviour
             confirmation, noAvailable, charging, noComplete 
         };
     }
+    void Start()
+    {
+        resetScreen();
+        OpenPanel(selection);
+    }
 
     public void resetScreen()
     {

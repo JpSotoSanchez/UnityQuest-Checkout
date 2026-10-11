@@ -353,6 +353,12 @@ public class KitSelector : MonoBehaviour
             Debug.LogWarning("kitSelector: no kit selected.");
             return;
         }
+        
+        if (kitManager.IsOccupied(kitSelected) == true)
+        {
+            Debug.LogWarning("kitSelector: the kit is rented by someone else, it cannot be reported now.");
+            return;
+        }
 
         kitManager.SetIncomplete(kitSelected);
 
