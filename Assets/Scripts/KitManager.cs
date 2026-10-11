@@ -67,6 +67,21 @@ public class KitManager : MonoBehaviour
         return null;
     }
 
+    // Marks a kit as incomplete (state 3) and saves it to the JSON file
+    public void SetIncomplete(int kitNumber)
+    {
+        KitData kit = FindKit(kitNumber);
+        if (kit == null)
+        {
+            Debug.LogWarning("KitManager: kit " + kitNumber + " not found.");
+            return;
+        }
+
+        kit.available = 3;       // incomplete
+        kit.complete = false;    // keeps the data consistent with the state
+        Save();                  // overwrites Kits.json
+        RefreshAll();            // updates the buttons
+    }
     // If a kit is in state 2 and its date has passed, move it to another state
     public void CheckExpired()
     {
