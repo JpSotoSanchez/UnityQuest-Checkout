@@ -38,7 +38,12 @@ public class KitSelector : MonoBehaviour
     [SerializeField] private TMP_Text hourConfirmed;
     [SerializeField] private TMP_Text minuteConfirmed;
 
-
+    [Header("NOT AVAILABLE panel (assign when the labels exist)")]
+    [SerializeField] private TMP_Text availableDayText;
+    [SerializeField] private TMP_Text availableMonthText;
+    [SerializeField] private TMP_Text availableYearText;
+    [SerializeField] private TMP_Text availableHourText;
+    [SerializeField] private TMP_Text availableMinuteText;
 
 
     [Header("Data")]
@@ -64,6 +69,29 @@ public class KitSelector : MonoBehaviour
     public bool HasKit()
     {
         return kitSelected >= 0;
+    }
+
+    // Writes the date when the selected kit is free again (only numbers, one per text)
+    public void ShowAvailableFrom()
+    {
+        if (HasKit() == false)
+        {
+            return;
+        }
+
+        DateTime from = kitManager.GetAvailableFrom(kitSelected);
+
+        if (availableDayText != null) availableDayText.text = from.ToString("dd");
+        if (availableMonthText != null) availableMonthText.text = from.ToString("MM");
+        if (availableYearText != null) availableYearText.text = from.ToString("yy");
+        if (availableHourText != null) availableHourText.text = from.ToString("HH");
+        if (availableMinuteText != null) availableMinuteText.text = from.ToString("mm");
+    }
+
+    // True if the selected kit is rented by someone else right now
+    public bool IsSelectedKitOccupied()
+    {
+        return HasKit() == true && kitManager.IsOccupied(kitSelected);
     }
 
     // ---------- Reading the UI ----------
@@ -136,36 +164,6 @@ public class KitSelector : MonoBehaviour
     }
 
     // ---------- Stage 4: review (optional) ----------
-    
-    public void PrepareReview()
-    {
-        ReadDuration();
-        ReadChecklist();
-
-        if (summaryText == null)
-        {
-            return;
-        }
-
-        DateTime until = DateTime.Now + GetDuration();
-        string kitText = "none";
-
-        if (HasKit() == true)
-        {
-            kitText = kitSelected.ToString();
-        }
-
-        summaryText.text =
-            "Kit: " + kitText + "\n" +
-            "Duration: " + days + " d " + hours + " h " + minutes + " min\n" +
-            "Available again: " + until.ToString("dd/MM/yyyy HH:mm") + "\n" +
-            "Headset: " + YesNo(headset) + "\n" +
-            "Right controller: " + YesNo(controlR) + "\n" +
-            "Left controller: " + YesNo(controlL) + "\n" +
-            "Charger: " + YesNo(charger) + "\n" +
-            "Complete: " + YesNo(complete);
-    }
-
     // Writes the selected kit into the Order Check panel text
     public void UpdateOrderCheckKit()
     {
@@ -312,7 +310,6 @@ public class KitSelector : MonoBehaviour
         }
 
         ReadDuration();
-        ReadChecklist();
 
         if (GetDuration() <= TimeSpan.Zero)
         {
@@ -320,10 +317,20 @@ public class KitSelector : MonoBehaviour
             return;
         }
 
-        // End date: current date and time + the duration read from the dropdowns
-        DateTime until = DateTime.Now + GetDuration();
+        // Free kit: now + duration. Occupied kit: the date it already has + duration.
+        bool queued = kitManager.IsOccupied(kitSelected);
+        DateTime until = kitManager.GetAvailableFrom(kitSelected) + GetDuration();
 
-        kitManager.ReserveKit(kitSelected, until, complete);
+        if (queued == true)
+        {
+            // The kit is still with someone else: only the end date changes.
+            kitManager.SetDate(kitSelected, until);
+        }
+        else
+        {
+            ReadChecklist();
+            kitManager.ReserveKit(kitSelected, until, complete);
+        }
         
         ShowConfirmation(kitSelected, until);   // before the reset
 

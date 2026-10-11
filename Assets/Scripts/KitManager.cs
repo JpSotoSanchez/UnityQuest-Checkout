@@ -82,6 +82,30 @@ public class KitManager : MonoBehaviour
         Save();                  // overwrites Kits.json
         RefreshAll();            // updates the buttons
     }
+    
+    // True if the kit is rented (state 2) and its rental has not ended yet
+    public bool IsOccupied(int kitNumber)
+    {
+        KitData kit = FindKit(kitNumber);
+        if (kit == null)
+        {
+            return false;
+        }
+
+        return kit.available == 2 && kit.GetDate() > DateTime.Now;
+    }
+
+    // Moment when the kit can be picked up: now if it is free,
+    // or the date it already has if it is occupied
+    public DateTime GetAvailableFrom(int kitNumber)
+    {
+        if (IsOccupied(kitNumber) == true)
+        {
+            return FindKit(kitNumber).GetDate();
+        }
+
+        return DateTime.Now;
+    }   
     // If a kit is in state 2 and its date has passed, move it to another state
     public void CheckExpired()
     {

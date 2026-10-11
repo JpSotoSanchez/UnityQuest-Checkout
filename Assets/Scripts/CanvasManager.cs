@@ -66,6 +66,13 @@ public class CanvasManager : MonoBehaviour
 
     public void toKitCheck()
     {
+        // Occupied kit: there is nothing to check yet, go straight to the order check
+        if (kitSelector.IsSelectedKitOccupied() == true)
+        {
+            OpenOrderCheck();
+            return;
+        }
+
         OpenPanel(kitCheck);
     }
 
@@ -73,8 +80,15 @@ public class CanvasManager : MonoBehaviour
     {
         if (kitSelector.complete)
         {
-            OpenPanel(orderCheck);
+            OpenOrderCheck();
         }
+    }
+
+    private void OpenOrderCheck()
+    {
+        kitSelector.CopyDurationToReview();
+        kitSelector.UpdateOrderCheckKit();
+        OpenPanel(orderCheck);
     }
 
     public void toConfirmation()
