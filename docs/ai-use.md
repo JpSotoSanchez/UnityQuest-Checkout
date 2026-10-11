@@ -21,6 +21,7 @@ For each relevant use, the team records the tool, date, teammate, purpose, promp
 | 6 | 2026-10-09 | José Pablo Soto Sánchez | Drafting this document | Documentation |
 | 7 | 2026-10-10 | José Pablo Soto Sánchez | Testing report template | Testing support |
 | 8 | 2026-10-10 | José Pablo Soto Sánchez | Design justification template | Design support |
+| 9 | 2026-10-10 | José Pablo Soto Sánchez | Reserving an occupied kit (date + duration) and NOT AVAILABLE flow | Unity code, debugging |
 
 ---
 
@@ -48,15 +49,15 @@ The team kept the structure but adapted it to the app: the manager was named `Ki
 
 **Verification**
 
-- [ ] What the team tested: *(fill in)*
-- [ ] What actually happened: *(fill in)*
+- [x] What the team tested: that the JSON files were read and that this was reflected in `KitManager` without anything crashing.
+- [x] What actually happened: the code did what was expected once the pieces were put together.
 
 **What the team can explain**
 
 - The team used AI to: find why the JSON was not loading and to get a cleaner structure.
 - The team decided to: keep one manager as the only script that touches the file, because then other scripts only call its methods.
-- The team verified the result by: *(fill in)*
-- One thing the team still needs to check: *(fill in)*
+- The team verified the result by: reading the JSON files and checking that `KitManager` reflected them without errors.
+- One thing the team still needs to check: that this way of saving the data can be read correctly when the app is actually used, and that it is scalable if it is modified later.
 
 ---
 
@@ -80,19 +81,19 @@ The AI rewrote the class with `for` loops and `if` statements, and moved the kit
 
 **Modifications**
 
-*(Fill in what the team changed after reading it.)*
+The team read all of the code to make sure it used the syntax the programmer wanted.
 
 **Verification**
 
-- [ ] What the team tested: *(fill in)*
-- [ ] What actually happened: *(fill in)*
+- [ ] What the team tested: no formal test was run; the team read all of the code to check the syntax.
+- [x] What actually happened: everything kept working as before, only now with a syntax that is easier to understand.
 
 **What the team can explain**
 
 - The team used AI to: rewrite its own code in a simpler style.
 - The team decided to: use plain loops, because every line of them can be explained.
-- The team verified the result by: *(fill in)*
-- One thing the team still needs to check: *(fill in)*
+- The team verified the result by: reading all of the code and checking that everything kept working as before.
+- One thing the team still needs to check: nothing else. The code was seen to work exactly the same as before.
 
 ---
 
@@ -114,19 +115,19 @@ The AI listed several options: simple string concatenation, string interpolation
 
 **Modifications**
 
-*(Fill in which option the team kept and why.)*
+None. The team kept the path option that was already in the code.
 
 **Verification**
 
-- [ ] What the team tested: *(fill in)*
-- [ ] What actually happened: *(fill in)*
+- [x] What the team tested: another way to build the path, using the AI's options as a source of ideas.
+- [x] What actually happened: the team kept what it already had.
 
 **What the team can explain**
 
 - The team used AI to: compare options it did not know.
-- The team decided to: *(fill in)*, because *(fill in)*.
-- The team verified the result by: *(fill in)*
-- One thing the team still needs to check: *(fill in)*
+- The team decided to: keep the path option that was already in the code, because it was easier to implement.
+- The team verified the result by: trying another way to build the path and comparing it with the one the code already had.
+- One thing the team still needs to check: that if the path is modified for any reason, how the code should be adjusted, or whether it needs to be modified at all.
 
 ---
 
@@ -150,58 +151,55 @@ The AI reviewed the drafts and found four problems: `path` was assigned twice (s
 
 **Modifications**
 
-The idea and the states (0 available, 1 charging, 2 unavailable, 3 incomplete) came from the team, as did the decision to store the date in separate fields and use `DateTime` for operations. *(Fill in what the team changed from the AI's version, for example which state an expired kit goes to.)*
+The idea, the decision to store the date in separate fields and the use of `DateTime` for operations came from the team. Originally the team only had states 0, 1 and 2; state 3 (incomplete) was added afterwards.
 
 **Verification**
 
-- [ ] What the team tested: *(fill in, for example a kit with a past date)*
-- [ ] What actually happened: *(fill in)*
+- [x] What the team tested: that the different functions and the research on `DateTime` fit the project, that the data was saved correctly, and that the colors adjusted as the dates were modified.
+- [x] What actually happened: the AI helped build the code so that everything fit with the rest of the project and with the idea of how the app should work.
 
 **What the team can explain**
 
 - The team used AI to: review its drafts and find bugs it had not noticed.
 - The team decided to: store the rental end date and check it in `KitManager`, because other parts of the app will also change kit data.
-- The team verified the result by: *(fill in)*
-- One thing the team still needs to check: *(fill in)*
+- The team verified the result by: checking that the functions fit the project, that the data was saved correctly, and that the colors changed when the dates were modified.
+- One thing the team still needs to check: whether the data will stay this way, whether more sections will eventually be added to the code, whether the data is kept across scenes, and whether it is overwritten correctly.
 
 ---
 
 ## Entry 5: Updating `Kits.json` with the new fields
-
+ 
 - **Tool:** Claude (Anthropic)
 - **Date:** 2026-10-09
 - **Teammate:** José Pablo Soto Sánchez (UPSoto)
 - **Purpose:** Unity code and debugging support. The JSON needed the new date and `complete` fields.
 - **Related work:** `Kits.json`, `Assets/Scripts/KitData.cs`
-
 **Prompt**
-
+ 
 > Hay que actualiza tambien el kit.json:
-
+ 
 *(Followed by the team's JSON with six kits, where kit 1 had `"year":2026, "month": ` unfinished.)*
-
+ 
 **Response used**
-
+ 
 The AI noticed that `"month":` had no value, which breaks `JsonUtility`, and completed every kit with all the fields of `KitData`. It put a real date only on the kit in state 2 and explained that a kit in state 2 with the date in zeros expires immediately. It also reminded the team that the saved copy in `persistentDataPath` must be reset to see the new JSON.
-
+ 
 **Modifications**
-
-*(Fill in the dates and `complete` values the team actually used.)*
-
+ 
+The team changed `Kits.json` so that it had all the fields complete with the information.
+ 
 **Verification**
-
-- [ ] What the team tested: *(fill in)*
-- [ ] What actually happened: *(fill in)*
-
+ 
+- [x] What the team tested: that the app was followed through and that the data was updated.
+- [x] What actually happened: the AI updated the data.
 **What the team can explain**
-
+ 
 - The team used AI to: fix the broken JSON and fill in the missing fields.
-- The team decided to: *(fill in)*, because *(fill in)*.
-- The team verified the result by: *(fill in)*
-- One thing the team still needs to check: *(fill in)*
-
+- The team decided to: let the AI fill in the data, because it made testing more automated and saved time.
+- The team verified the result by: following the app and checking that the data was updated.
+- One thing the team still needs to check: that the dates are appropriate for the tests.
 ---
-
+ 
 ## Entry 6: Drafting this document
 
 - **Tool:** Claude (Anthropic)
@@ -222,20 +220,20 @@ The AI wrote the structure of this document, turned the prompts of this conversa
 
 **Modifications**
 
-*(Fill in what the team changed, and which placeholders it replaced with real results.)*
+The team adjusted some things, for example an index was added at the start, which did not exist at first.
 
 **Verification**
 
-- [ ] The team checked every field against the course instructions.
-- [ ] The team replaced all the *(fill in)* parts with its real actions and results.
-- [ ] The related-work links point to real files in the repository.
+- [x] The team checked that the document included the prompts made so far, that the format was good, and that it works as a template to add more entries later.
+- [x] The team replaced all the parts with its real actions and results.
+- [x] The related-work links point to real files in the repository.
 
 **What the team can explain**
 
 - The team used AI to: get the structure and wording of this document from the course instructions.
-- The team decided to: *(fill in)*, because *(fill in)*.
-- The team verified the result by: *(fill in)*
-- One thing the team still needs to check: *(fill in)*
+- The team decided to: use AI to write the document, because all the prompts were already in that same conversation and the AI would also provide the template.
+- The team verified the result by: checking that it included the prompts made so far and that the format could be reused for new entries, and by filling in the template with the team's real data.
+- One thing the team still needs to check: that there are no errors in the wording the AI wrote.
 
 ---
 
@@ -268,12 +266,11 @@ The AI produced an empty template for `docs/testing.md`: the six test cases with
 
 **Modifications**
 
-*(Fill in: scenarios redefined, candidate problems that did not reproduce, wording edited, cases added or removed.)*
+No changes were made to the direct result of the AI. Afterwards, the team added all the required data to complete the report, using the real data it obtained.
 
 **Verification**
 
-- [ ] What the team tested: *(fill in: the six cases, run by the team on the tested build)*
-- [ ] What actually happened: *(fill in: real results, times and evidence saved in `docs/evidence/`)*
+- [x] What the team tested and what actually happened: the team added all the required data to `docs/testing.md`, using the real data it obtained.
 - [ ] The three outside users were tested by the team, not simulated by the AI.
 - [ ] The two fixed problems have evidence before and after.
 
@@ -282,9 +279,9 @@ The AI did not run the app, so all results, times and evidence in `docs/testing.
 **What the team can explain**
 
 - The team used AI to: get the structure of the report and a list of possible problems from the code.
-- The team decided to: *(fill in which two problems to fix)*, because *(fill in)*.
-- The team verified the result by: *(fill in)*
-- One thing the team still needs to check: *(fill in, for example which candidate problems did not reproduce)*
+- The team decided to: use AI to get a template, because it would be much easier than starting from scratch.
+- The team verified the result by: adding the real data it obtained to the template.
+- One thing the team still needs to check: that, even though all the sections were seen to match the requirements, the report does not include more or less than required and that its format will not make it invalid later.
 
 ---
 
@@ -310,10 +307,11 @@ The AI produced an empty template for `docs/design.md`: three decision tables (u
 
 **Modifications**
 
-*(Fill in: which three decisions the team chose, candidate decisions replaced, candidate differences that did not match the real Figma file, wording edited.)*
+No changes have been made to the template yet. The team reviewed that it had everything needed, so the real data of the project can be added to it later.
 
 **Verification**
 
+- [x] The team reviewed that the template had everything required by the course parameters.
 - [ ] The three decisions, user problems and HCI principles were chosen and checked by the team.
 - [ ] The Figma and Unity screenshots are the team's own.
 - [ ] Every candidate difference was checked against the real Figma file before being kept.
@@ -324,6 +322,61 @@ The AI did not have access to the team's Figma file or the running app.
 **What the team can explain**
 
 - The team used AI to: get the structure of the document and ideas for decisions to justify.
-- The team decided to: *(fill in the three decisions)*, because *(fill in)*.
-- The team verified the result by: *(fill in)*
-- One thing the team still needs to check: *(fill in)*
+- The team decided to: use AI to get a template, because it would be much easier than starting from scratch.
+- The team verified the result by: reviewing that the template had everything needed before filling it in with the real data of the project.
+- One thing the team still needs to check: that, even though all the sections were seen to match the requirements, the document does not include more or less than required and that its format will not make it invalid later.
+
+---
+
+## Entry 9: Reserving an occupied kit (date + duration) and the NOT AVAILABLE flow
+
+- **Tool:** Claude (Anthropic), in the same conversation used to develop `KitSelector` and `KitManager`, so it had the project code as context.
+- **Date:** 2026-10-10
+- **Teammate:** José Pablo Soto Sánchez (UPSoto)
+- **Purpose:** Unity code and debugging. The team wanted a kit that is not available to still be reservable: the user sees a NOT AVAILABLE screen with the date when the kit is released, continues through the main path, and the end date becomes the kit's current date plus the chosen duration. A free kit keeps working as before (current time plus duration).
+- **Related work:** `Assets/Scripts/KitManager.cs`, `Assets/Scripts/KitSelector.cs`, `Assets/Scripts/KitButton.cs`, `Assets/Scripts/CanvasManager.cs`, `Kits.json`, `KitsOg.json`
+
+**Prompt**
+
+The prompts were sent in sequence in one conversation. They are combined here:
+
+> Quiero hacer varias cosas. Si el kit está libre en el momento, ya funciona el selector de fechas porque le añade la duración a la fecha actual, sin embargo, si está no disponible quiero que de igual manera pueda reservar que sería a partir de la hora a la que se descocupa + la duración que el usuario. Resuelve que se pueda hacer eso.
+>
+> En el panel uno, cuando se elige el kit, si se presiona uno que no está disponible, al usuario se le muestra una pantalla que le muestra la fecha en la que estará disponible, de ahí el usuario quiere igualmente hacer la reservación, se sigue con el main path. Y ahí es donde aplica que se sume la hora. Todavía no están esos labels, pero se incluirán. Nuestra opción es que ya con eso se haga la reserva, por lo que sí se debe obtener la fecha, ajustarla según lo necesario, ya sea que si está disponible ponga la hora actual + la duración y en caso de que no ponga la fecha que ya tiene + la duración.
+>
+> Estos son los códigos que tengo actualmente, qué me falta para la implementación?
+>
+> Follow-up questions about the Inspector: how much needs to change, what the 6 kit buttons must have in On Click, and what the Next button of the NOT AVAILABLE panel must have.
+>
+> Algo está raro, no me marca que se ponga verde. / No entiendo cuál fue el error.
+
+*(Attached: the team's own `KitManager.cs`, `KitSelector.cs`, `KitButton.cs`, `CanvasManager.cs`, `KitData.cs`, `Kits.json`, `KitsOg.json`, and screenshots of the kit selection screen and the NOT AVAILABLE panel.)*
+
+**Response used**
+
+- **Rental logic:** The AI added `IsOccupied()` and `GetAvailableFrom()` to `KitManager`. `ConfirmReservation()` in `KitSelector` now calculates the end date as the kit's current date plus the duration if the kit is occupied, or the current time plus the duration if it is free. For an occupied kit only the date is changed (`SetDate`), so the state and the `complete` value of the person who has the kit are not overwritten.
+- **NOT AVAILABLE screen:** The AI added `ShowAvailableFrom()`, which writes the release date in separate TMP texts (the team's labels were not created yet, so the fields are optional).
+- **Bug in `KitButton`:** After reading the team's code, the AI found that `Apply()` called `AddListener` on every refresh, so listeners stacked and a button could open the wrong panel. It rewrote the script with one listener added in `Awake()` that checks the current state when pressed and calls `KitSelected(kitNumber)`.
+- **Own correction:** In its first answer the AI suggested `UnityEvent`s and a new `KitPressed` method before seeing `KitButton` and `CanvasManager`. After the team shared those files, it dropped that idea because `KitButton` already routes each state to a panel.
+- **Stale data:** When the team's kit 2 did not turn green after editing the JSON, the AI explained that `KitManager.Load()` copies the default JSON to `persistentDataPath` only the first time, so later edits to the project JSON are ignored. It suggested deleting the saved file (with two `ContextMenu` helper methods) or using the reset combo with `KitsOg.json`.
+- **Suggestions not requested:** The AI also suggested skipping the checklist for occupied kits in `CanvasManager.toKitCheck()`, blocking `ReportIncomplete()` when the kit is occupied, and changing `ReadDuration()` to `ReadReviewDuration()` in `ConfirmReservation()`.
+
+**Modifications**
+
+The AI proposed a solution that the team had to correct so it fit the project and so the data was saved correctly. The team also modified the flow so that, if it is already known that the kit is rented, the user no longer has to check whether it is complete, which makes that part simpler for the user.
+
+**Verification**
+
+- [x] Before asking the AI, the team tested the whole app and noticed a few things that were missing to have a more complete project.
+- [x] The team noticed that kit 2 stayed yellow after editing the JSON, and confirmed the cause was the old saved copy in `persistentDataPath`, not the code.
+- [x] What the team tested after the changes: that, with the correct data, kit 1 turns green.
+- [x] What actually happened: the error of the app reading the existing saved data was fixed, and kit 1 turned green with the correct data.
+- [x] A free kit still gets current time plus duration: it adds the dates correctly.
+- [x] After a reservation on an occupied kit, its `complete` value did not change.
+
+**What the team can explain**
+
+- The team used AI to: add a couple of missing functions and correct part of the logic the team had already planned.
+- The team decided to: use AI to help think through the flow, because the team had doubts about how the parts connected.
+- The team verified the result by: testing everything before asking the AI, and then correcting the AI's solution until it fit the project and the data was saved correctly.
+- One thing the team still needs to check: that the dates match and that the data is saved correspondingly.
