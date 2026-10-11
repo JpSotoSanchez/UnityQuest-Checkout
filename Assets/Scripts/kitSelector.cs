@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,15 +9,18 @@ public class KitSelector : MonoBehaviour
     public KitManager kitManager;
 
     [Header("Stage 2: duration (existing dropdowns in the scene)")]
-    [SerializeField] private Dropdown dayDropdown;
-    [SerializeField] private Dropdown hourDropdown;
-    [SerializeField] private Dropdown minuteDropdown;
+    [SerializeField] private TMP_Dropdown dayDropdown;
+    [SerializeField] private TMP_Dropdown hourDropdown;
+    [SerializeField] private TMP_Dropdown minuteDropdown;
 
     [Header("Stage 3: completeness checklist")]
     [SerializeField] private Toggle headsetToggle;
     [SerializeField] private Toggle controlRToggle;
     [SerializeField] private Toggle controlLToggle;
     [SerializeField] private Toggle chargerToggle;
+    [SerializeField] private GameObject buttonComplete;
+    [SerializeField] private GameObject buttonIncomplete;
+
 
     [Header("Stage 4: review (optional)")]
     [SerializeField] private Text summaryText;
@@ -30,6 +34,7 @@ public class KitSelector : MonoBehaviour
     public bool controlR;
     public bool controlL;
     public bool charger;
+    
     public bool complete;          // true only if all four items are checked
 
     // ---------- Stage 1: kit ----------
@@ -48,7 +53,7 @@ public class KitSelector : MonoBehaviour
     // ---------- Reading the UI ----------
 
     // Converts the text of the selected option into a number ("6" or "6 h" both give 6)
-    private int GetDropdownNumber(Dropdown dropdown)
+    private int GetDropdownNumber(TMP_Dropdown dropdown)
     {
         string text = dropdown.options[dropdown.value].text;
         int result;
@@ -103,10 +108,14 @@ public class KitSelector : MonoBehaviour
         if (headset == true && controlR == true && controlL == true && charger == true)
         {
             complete = true;
+            buttonComplete.gameObject.SetActive(true);
+            buttonComplete.gameObject.SetActive(false);
         }
         else
         {
             complete = false;
+            buttonComplete.gameObject.SetActive(false);
+            buttonComplete.gameObject.SetActive(true);
         }
     }
 
