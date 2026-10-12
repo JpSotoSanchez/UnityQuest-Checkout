@@ -5,11 +5,12 @@
 | Field | Value |
 |---|---|
 | Project | UnityQuest-Checkout (kit rental app for tablets) |
-| Branch / commit | `soto` / `<run: git rev-parse --short HEAD>` |
-| Unity version | `<fill in>` |
-| Device | `<tablet model, or Unity Editor + Game view resolution>` |
-| Test date(s) | `<fill in>` |
-| Tester(s) | `<team members>` |
+| Branch / commit | `soto` / [`18b461d`](https://github.com/JpSotoSanchez/UnityQuest-Checkout/commit/18b461d60a02eecd29a49634f95ec4bded6c7eba) ("Added images and started the desing document") |
+| Unity version | 6000.5.7f1 |
+| Device | Unity Editor, Play mode with the play scene (Game view resolution: `1536x2048`) |
+| Test date(s) | Usability session: 11/10/2026, about 7:27 pm. Functional cases: `7:29pm` |
+| Tester(s) | `José Pablo Soto Sánchez` |
+
 
 **Test data.** Unless a case says otherwise, every case starts from this `Kits.json`
 (stored in `Application.persistentDataPath`). Delete the file before a case to start from the default.
@@ -33,7 +34,7 @@ State legend: 0 = available, 1 = charging, 2 = not available, 3 = incomplete.
 Result fields: **Actual**, **Pass/Fail** and **Evidence** are filled in while testing.
 Evidence = screenshot or short video saved under `docs/evidence/`.
 
-### TC-01 Checkout (happy path)
+### Scenario A: Complete Checkout 
 
 | | |
 |---|---|
@@ -44,51 +45,18 @@ Evidence = screenshot or short video saved under `docs/evidence/`.
 | **Pass/Fail** | `<fill in>` |
 | **Evidence** | `docs/evidence/tc01-*.png` |
 
-### TC-02 No availability
+### Scenario B:  No availability
 
 | | |
 |---|---|
 | **Setup** | Default test data above, with no kit in state 0 (all kits in 1, 2 or 3). |
-| **Steps** | 1. Open the app. 2. Try to tap every kit. 3. Try to continue to the duration panel. |
-| **Expected** | No kit can be selected. The app does not advance and does not change any kit in `Kits.json`. |
+| **Steps** | 1. Open the app. 2. Try to tap a no available kit. 3. Try to continue to the duration panel. |
+| **Expected** | To follow with the reservation that will statr when the other kit is available. |
 | **Actual** | `<fill in>` |
 | **Pass/Fail** | `<fill in>` |
 | **Evidence** | `docs/evidence/tc02-*.png` |
 
-### TC-03 Invalid kit / invalid input
 
-| | |
-|---|---|
-| **Setup** | Kit 1 in state 0. |
-| **Steps** | A. Press Confirm without selecting a kit. B. Select a kit and set duration 0 d / 0 h / 0 min, then Confirm. C. Select a kit that is not in state 0 (if the UI allows it) and Confirm. |
-| **Expected** | A and B: no reservation is created, nothing is saved, and the user sees a clear message or stays on the panel (the code currently logs a warning in the console only). C: the reservation is rejected. |
-| **Actual** | `<fill in>` |
-| **Pass/Fail** | `<fill in>` |
-| **Evidence** | `docs/evidence/tc03-*.png`, console log |
-
-### TC-04 Editing choices
-
-| | |
-|---|---|
-| **Setup** | Kit 1 in state 0. |
-| **Steps** | 1. Select kit 1, set duration 1 d / 2 h / 10 min, go to the checklist. 2. Check all items, go to Order Check. 3. Change the duration in the Order Check dropdowns (e.g. to 0 d / 3 h / 0 min). 4. Confirm. 5. Repeat, but go back and uncheck one checklist item. |
-| **Expected** | The summary and the saved date use the **edited** values, not the original ones. Unchecking an item shows the incomplete button and the kit is stored as incomplete (state 3, `complete: false`). |
-| **Actual** | `<fill in>` |
-| **Pass/Fail** | `<fill in>` |
-| **Evidence** | `docs/evidence/tc04-*.png` |
-
-### TC-05 Saved data after restart
-
-| | |
-|---|---|
-| **Setup** | Kit 1 in state 0. |
-| **Steps** | 1. Complete a checkout for kit 1. 2. Note the return date shown. 3. Close the app completely. 4. Reopen it. 5. Repeat with a kit reported as incomplete. |
-| **Expected** | Kit 1 is still "not available" with the same return date. The incomplete kit is still in state 3. `Kits.json` matches what the UI shows. |
-| **Actual** | `<fill in>` |
-| **Pass/Fail** | `<fill in>` |
-| **Evidence** | `docs/evidence/tc05-*.png`, copy of `Kits.json` before/after |
-
-### TC-06 Scenario reset
 
 | | |
 |---|---|
@@ -103,12 +71,8 @@ Evidence = screenshot or short video saved under `docs/evidence/`.
 
 | Case | Result |
 |---|---|
-| TC-01 Checkout | `<Pass/Fail>` |
-| TC-02 No availability | `<Pass/Fail>` |
-| TC-03 Invalid kit | `<Pass/Fail>` |
-| TC-04 Editing choices | `<Pass/Fail>` |
-| TC-05 Saved data after restart | `<Pass/Fail>` |
-| TC-06 Scenario reset | `<Pass/Fail>` |
+| Scenario A: Complete Checkout  | `<Pass/Fail>` |
+| Scenario B:  No availability | `<Pass/Fail>` |
 
 ---
 
@@ -118,24 +82,34 @@ Evidence = screenshot or short video saved under `docs/evidence/`.
 The facilitator only reads the task aloud and does not point at the screen. Participants are identified
 only by anonymous IDs (P1, P2, P3); no names are recorded.
 
+**Session log**
+
+| Participant | Date and time | Build | Environment |
+|---|---|---|---|
+| P1 | 11/10/2026, about 7:27 pm | `18b461d` | Unity Editor, Play mode, play scene |
+| P2 | `<fill in>` | `<fill in>` | `<fill in>` |
+| P3 | `<fill in>` | `<fill in>` | `<fill in>` |
+
+So far only P1 has been tested. P2 and P3 are pending.
+
 **Scenarios**
-- **Scenario A:** `<e.g. "Reserve a kit for 2 hours; the kit is complete.">`
-- **Scenario B:** `<e.g. "Reserve a kit and report that the controller is missing.">`
+- **Scenario A:** Reserve a Quest kit for 90 minutes, then check that the kit is complete.
+- **Scenario B:** Select a kit and check what is available. `<fill in: exact wording of the task>`
 
 **Results**
 
 | Participant | Scenario | Completed (Y/N) | Time (mm:ss) | Errors | Help needed | Observations |
 |---|---|---|---|---|---|---|
-| P1 | A | | | | | |
-| P1 | B | | | | | |
+| P1 | A | Y | 01:10 | `<fill in>` | `<fill in>` | Hesitated a lot about what to do in each panel. Did not know how to move through the flow. Only simple task instructions were given. |
+| P1 | B | Y | 00:34 | `<fill in>` | `<fill in>` | Faster than scenario A because the participant had already seen how to select a kit. |
 | P2 | A | | | | | |
 | P2 | B | | | | | |
 | P3 | A | | | | | |
 | P3 | B | | | | | |
 
-**Totals:** completion rate `<x/6>`, average time A `<>`, average time B `<>`, total errors `<>`, help requests `<>`.
+**Totals:** completion rate `<x/6>`, average time A `<>`, average time B `<>`, total errors `<>`, help requests `<>`. (Only P1 recorded so far: A 01:10, B 00:34.)
 
-**Patterns observed:** `<fill in after the sessions>`
+**Patterns observed:** The participant got stuck when the panels did not give clear instructions about what to do. The proposed changes are in Problem 1 (section 4). `<fill in after P2 and P3>`
 
 ---
 
@@ -144,14 +118,14 @@ only by anonymous IDs (P1, P2, P3); no names are recorded.
 At least two problems must be fixed and retested. If fewer than two appear in sections 2 and 3, expand
 testing (extra devices, longer durations, rapid taps, restart in the middle of a flow) and document them here.
 
-### Problem 1: `<title>`
+### Problem 1: The panels do not tell the user what to do
 
 | | |
 |---|---|
-| **Found in** | `<TC-xx or participant ID>` |
-| **Description** | `<what happened>` |
+| **Found in** | P1, scenarios A and B (usability session of 11/10/2026, build `18b461d`) |
+| **Description** | The participant hesitated a lot about what to do in each panel. Scenario B (00:34) was faster than scenario A (01:10) because the participant had already seen how to select a kit. In scenario A the participant did not know how to move through the flow. The participant was only given simple task instructions. |
 | **Before (evidence)** | `docs/evidence/p1-before.png` |
-| **Fix** | `<what changed, file and commit>` |
+| **Fix** | Status: planned, not implemented yet. Planned changes: <br>1. Change the title "Duration" to "Select a duration", and do the same in every panel so it is clear that the user has to choose something. In the kit check, add a text saying the user has to confirm that the items are complete in order to continue. <br>2. Add an explicit instruction in every panel about what to tap, for example in the review panel: "Check that the kit is complete". <br>3. Show clearly the order of the steps (what is done first and what follows). <br>4. Review that the whole flow is in order and consistent between panels. <br>`<fill in: file and commit when done>` |
 | **After (evidence)** | `docs/evidence/p1-after.png` |
 | **Retest result** | `<Pass/Fail>` |
 
