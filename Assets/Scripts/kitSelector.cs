@@ -309,7 +309,7 @@ public class KitSelector : MonoBehaviour
             return;
         }
 
-        ReadDuration();
+        ReadReviewDuration();
 
         if (GetDuration() <= TimeSpan.Zero)
         {

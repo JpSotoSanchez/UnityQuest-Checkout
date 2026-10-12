@@ -1,90 +1,112 @@
 # Design Justification
 
-This document justifies three interaction decisions of the kit checkout app and compares the Figma
-design with the final Unity implementation.
+This document justifies three interaction decisions of the kit checkout kiosk and compares the original Figma design with the Unity implementation.
 
-**Build / commit:** `<git rev-parse --short HEAD>`
+**Unity version:** 6000.5.7f1
+**Build / commit:** FILL IN
 **Related documents:** [testing report](testing.md), [AI use](ai-use.md)
+
+The Unity kiosk was built from the team's own Figma design. Most of the design was kept, with some changes caused by interactions and by how easy each section was to implement. Parts that still need real data are marked **FILL IN**.
 
 ---
 
 ## 1. Interaction decisions
 
-Each decision states the user problem, the HCI principle that supports it, an image and the result.
-Replace the candidate decisions with the three you actually want to defend.
-
-### Decision 1: `<title, e.g. "Checkout split into short steps (kit, duration, checklist, review, confirmation)">`
+### Decision 1: A kit that is not available can still be reserved for after the current reservation
 
 | | |
 |---|---|
-| **User problem** | `<What the user struggled with or needed. E.g. "Reserving a kit requires several choices; showing them all at once would be confusing and easy to get wrong.">` |
-| **HCI principle** | `<Name + one sentence. E.g. Progressive disclosure / Hick's law: fewer choices per screen make each decision faster.>` |
-| **Decision** | `<What the interface does. E.g. one panel per step, with a Next button that saves the values of that step.>` |
-| **Image** | ![Decision 1](evidence/design-d1.png) |
-| **Why it works** | `<Link the principle to the image. Point at the specific element.>` |
-| **Evidence** | `<Testing evidence, e.g. "P1 and P3 completed Scenario A without help (see testing.md, section 3).">` |
+| **User problem** | When the user presses a kit that is not available, they would be left with no options. They also need to know when the kit is free again. |
+| **HCI principle** | FILL IN |
+| **How the design addresses it** | Pressing a kit that is not available opens the NOT AVAILABLE panel, which shows the time when the kit is released and lets the user continue with the reservation (Next) or go back (Menu). If the user continues, the reservation starts when the previous one ends: the new end date is the date the kit already has plus the chosen duration. A free kit still gets the current time plus the duration. The flow is the same as in Figma, where this screen already offered a Next button to reserve for later. Showing the release time on this screen is new in Unity. |
+| **Evidence** | FILL IN (test case or participant ID, see [testing.md](testing.md)) |
 
-### Decision 2: `<title, e.g. "Review panel with editable duration before confirming">`
+| Figma | Unity |
+|---|---|
+| <img src="images/figmaNoAvailable.png" alt="Figma: NOT AVAILABLE panel" width="260"> | <img src="images/unityNoAvailable.png" alt="Unity: NOT AVAILABLE panel with the release time" width="260"> |
+
+### Decision 2: In the duration panel the user only adjusts the duration, not the start of the reservation
 
 | | |
 |---|---|
-| **User problem** | `<E.g. "Users may notice a wrong duration only at the end and would have to restart.">` |
-| **HCI principle** | `<E.g. User control and freedom (Nielsen) / Error prevention.>` |
-| **Decision** | `<E.g. Order Check repeats the chosen duration in dropdowns that can still be changed, and the summary updates.>` |
-| **Image** | ![Decision 2](evidence/design-d2.png) |
-| **Why it works** | `<fill in>` |
-| **Evidence** | `<E.g. TC-04 Editing choices.>` |
+| **User problem** | In the Figma design the user could adjust both the start and the duration of the reservation. This made reserving a kit more complicated than it needed to be. |
+| **HCI principle** | FILL IN |
+| **How the design addresses it** | The duration panel only asks for the duration. The start is not chosen by the user: it is the current time if the kit is free, or the time when the kit is released if it is occupied (see Decision 1). The user makes fewer choices to reserve a kit, and the implementation is simpler. The same change was made in Order Check, which no longer shows the pick-up date and time. |
+| **Evidence** | FILL IN (test case or participant ID, see [testing.md](testing.md)) |
 
-### Decision 3: `<title, e.g. "Visible kit state and checklist feedback (available, charging, not available, incomplete)">`
+| Figma | Unity |
+|---|---|
+| <img src="images/figmaDuration.png" alt="Figma: duration panel with pickup time and duration" width="260"> | <img src="images/unityDuration.png" alt="Unity: duration panel with only the duration" width="260"> |
+
+### Decision 3: Large, interactive-looking, consistent buttons, and few buttons per panel
 
 | | |
 |---|---|
-| **User problem** | `<E.g. "Users need to know which kits they can take and whether a kit is missing something.">` |
-| **HCI principle** | `<E.g. Visibility of system status / Recognition over recall / Feedback.>` |
-| **Decision** | `<E.g. each kit button shows its state; the checklist shows a different button when an item is missing.>` |
-| **Image** | ![Decision 3](evidence/design-d3.png) |
-| **Why it works** | `<fill in>` |
-| **Evidence** | `<E.g. TC-02 No availability, usability errors observed.>` |
+| **User problem** | FILL IN |
+| **HCI principle** | Affordance and consistency: the buttons are easy to see, select and handle. |
+| **How the design addresses it** | The buttons are large and look interactive, there are only a few in each panel, and they are consistent with each other. For example, all the Next and Back buttons are in the same positions in every panel: Back is in the top-left corner and Next is a green button at the bottom. |
+| **Evidence** | FILL IN (test case or participant ID, see [testing.md](testing.md)) |
+
+| Unity: duration | Unity: order check | Unity: not available |
+|---|---|---|
+| <img src="images/unityDuration.png" alt="Unity: duration panel, Back at the top left and Next at the bottom" width="220"> | <img src="images/unityOrderCheck.png" alt="Unity: order check panel, Back at the top left and Next at the bottom" width="220"> | <img src="images/unityNoAvailable.png" alt="Unity: not available panel, Back at the top left and Menu and Next at the bottom" width="220"> |
 
 ---
 
 ## 2. Figma vs Unity
 
-For each screen, show both versions side by side, then explain what changed and why.
-The reason must be an **implementation need** (technical constraint) or **testing evidence** (a test case or participant ID).
+### Implementation context
+
+These parts of the implementation shaped some of the changes:
+
+- **Data:** the kits are stored in three JSON files: one for scenario A, one for scenario B, and one that is updated constantly with the changes.
+- **Managers in the scene:**
+  - A panel manager (`CanvasManager`) that changes the Unity panels.
+  - `KitManager`, which saves the data and finishes modifying it.
+  - A combo manager, which reads the interaction and resets the data according to the command.
+  - `KitSelector`, which stores the data while the user moves through the panels so it is saved at the end.
+
+### Overview of all screens
+
+- Figma: [figmaComplete](images/figmaComplete.pdf)
+- Unity: [unityComplete](images/unityComplete.pdf)
 
 ### Screen comparison
 
 | Screen | Figma | Unity |
 |---|---|---|
-| Kit selection | ![](evidence/figma-kits.png) | ![](evidence/unity-kits.png) |
-| Duration | ![](evidence/figma-duration.png) | ![](evidence/unity-duration.png) |
-| Checklist | ![](evidence/figma-checklist.png) | ![](evidence/unity-checklist.png) |
-| Order Check | ![](evidence/figma-review.png) | ![](evidence/unity-review.png) |
-| Reservation completed | ![](evidence/figma-confirmed.png) | ![](evidence/unity-confirmed.png) |
+| Kit selection (scenario A) | <img src="images/figmaSelectionA.png" alt="Figma: selection A" width="200"> | <img src="images/unitySelectionA.png" alt="Unity: selection A" width="200"> |
+| Kit selection (scenario B) | <img src="images/figmaSelectionB.png" alt="Figma: selection B" width="200"> | <img src="images/unitySelectionB.png" alt="Unity: selection B" width="200"> |
+| Duration | <img src="images/figmaDuration.png" alt="Figma: duration" width="200"> | <img src="images/unityDuration.png" alt="Unity: duration" width="200"> |
+| Kit check | <img src="images/figmaKitCheck.png" alt="Figma: kit check" width="200"> | <img src="images/unityKitCheck.png" alt="Unity: kit check" width="200"> |
+| Order check | <img src="images/figmaOrderCheck.png" alt="Figma: order check" width="200"> | <img src="images/unityOrderCheck.png" alt="Unity: order check" width="200"> |
+| Confirmation | <img src="images/figmaConfirmation.png" alt="Figma: confirmation" width="200"> | <img src="images/unityConfirmation.png" alt="Unity: confirmation" width="200"> |
+| Not available | <img src="images/figmaNoAvailable.png" alt="Figma: not available" width="200"> | <img src="images/unityNoAvailable.png" alt="Unity: not available" width="200"> |
+| Charging | <img src="images/figmaCharging.png" alt="Figma: charging" width="200"> | <img src="images/unityCharging.png" alt="Unity: charging" width="200"> |
+| Incomplete | <img src="images/figmaIncomplete.png" alt="Figma: incomplete" width="200"> | <img src="images/unityIncomplete.png" alt="Unity: incomplete" width="200"> |
 
 ### What changed and why
 
 | # | Screen | Figma | Unity | Reason | Type |
 |---|---|---|---|---|---|
-| 1 | `<screen>` | `<what the design had>` | `<what was built>` | `<why>` | Implementation / Testing |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
+| 1 | Duration | The user could adjust the pick-up date and time, and the duration. | The user only adjusts the duration (Day, Hour, Min). The start is set automatically. | The reservation is simpler for the user, and the implementation is simpler. | Implementation. Testing evidence: FILL IN |
+| 2 | Order check | Showed the kit, the pick-up date and time, and the duration. | Shows the kit and the duration only. | Same reason as the duration panel: the start of the reservation is no longer selected. | Implementation. Testing evidence: FILL IN |
+| 3 | All panels with a back button | The back button was only an arrow. | The back button is larger and has the text "Back". | To make it more accessible. | FILL IN |
+| 4 | Charging | The panel had Menu and Next buttons, and said the user could still make a reservation. | The Next button was removed. The panel tells the user to come back in 2 hours. | A Quest 3 usually takes 2 hours to charge. | FILL IN |
+| 5 | Not available | The panel did not show when the kit would be free. | The panel shows "Time when released" with the date and time. | So the user knows when the kit is free and is not left without options (Decision 1). | FILL IN |
+| 6 | Kit selection | Title "Welcome!", numbered buttons, a legend of colors and three colors (green, yellow, red). | Title "Choose a kit", buttons with a picture of the kit, no legend in the capture, and a fourth color (orange). | FILL IN | FILL IN |
+| 7 | Kit check | The Incomplete and Next buttons were side by side. | A large Incomplete button is shown in the capture. FILL IN (how the Next button appears). | FILL IN | FILL IN |
+| 8 | Confirmation | The return date and time were shown without labels, and the button said "Main Menu". | The return time has Day / Month / Year labels, and the button says "Home". | FILL IN | FILL IN |
 
-**Type** is *Implementation* (needed by Unity, data or time) or *Testing* (changed after a test; cite the case or participant, e.g. TC-04, P2).
-
-**Candidate differences to check against your Figma file** (keep only the ones that are true):
-
-- **Duration input:** dropdowns (days 0-7, hours 0/1/2/3/6/12, minutes 0-30) instead of a free time picker, because they keep the value valid and are easy to read from `TMP_Dropdown` in code.
-- **Confirmation screen:** day, month, year, hour and minute are separate text fields, so each one is filled independently by `KitSelector`.
-- **Kit state on buttons:** four states come from `Kits.json` and are applied in `KitManager.RefreshAll()`, so the button appearance depends on saved data and not only on the design.
-- **Expired rentals:** kits whose time has passed change state automatically (`CheckExpired()`), which the static Figma frames cannot show.
-- **Changes after testing:** `<e.g. review duration became editable after P2 wanted to change it>`.
+**Type** is *Implementation* (needed by Unity, the data or the time available) or *Testing* (changed after a test; cite the case or participant, for example TC-04 or P2).
 
 ### What stayed the same
 
-`<List the elements that were kept as designed and why they did not need to change.>`
+- **Reserving a kit that is not available:** the flow is the same as in Figma (Decision 1).
+- **Kit grid:** six kits in two columns and three rows, with green for available, yellow for charging and red for not available.
+- **Confirmation content:** the locker number and the return date and time.
+- **Incomplete panel:** the same message and a Menu button.
+- FILL IN (why these elements did not need to change)
 
 ---
 
@@ -92,4 +114,5 @@ The reason must be an **implementation need** (technical constraint) or **testin
 
 | Limitation | Planned change |
 |---|---|
-| `<e.g. warnings for invalid input only appear in the console>` | `<e.g. on-screen message>` |
+| Each kit stores only one end date, so a kit with two reservations is released when the last one ends, and the end of the first one is not stored. | FILL IN |
+| FILL IN | FILL IN |
