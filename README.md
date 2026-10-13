@@ -13,6 +13,8 @@ Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/design
 Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/testing.md
 ### AI logs
 Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/ai-use.md
+### Project Build
+Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/tree/main/ProjectBuild
 
 ## Project Summary
 
