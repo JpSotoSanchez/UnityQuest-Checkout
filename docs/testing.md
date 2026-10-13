@@ -92,7 +92,7 @@ This case was updated to match the decision that a kit that is not available can
 | **Expected** | Kit 1 is still "not available" with the same return date. The incomplete kit is still in state 3. `Kits.json` matches what the UI shows. |
 | **Actual** | The information is saved after restarting. This is because of how the JSON works and how the app reads it. |
 | **Pass/Fail** | **Pass.** The data is saved. |
-| **Evidence** | `<fill in: copy of Kits.json before/after, or a capture>` |
+| **Evidence** | `images/kitsBefore.png & images/kitsAfter.png` |
 
 ### TC-06 Scenario reset
 
@@ -103,7 +103,7 @@ This case was updated to match the decision that a kit that is not available can
 | **Expected** | `Kits.json` is overwritten with the JSON of the chosen scenario (scenario A or scenario B), every button shows the original state of that scenario, and the original state is still there after reopening. |
 | **Actual** | The reset works. The `comboTrial` script reads the combo: `uuddqa` calls `ResetPrototypeA()` and `uuudqa` calls `ResetPrototypeB()`, restarting the data according to the scenario. |
 | **Pass/Fail** | **Pass.** |
-| **Evidence** | `<fill in>` |
+| **Evidence** | `images/comboRestart.mp4` |
 
 ### Summary
 
