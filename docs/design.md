@@ -89,30 +89,17 @@ These parts of the implementation shaped some of the changes:
 
 | # | Screen | Figma | Unity | Reason | Type |
 |---|---|---|---|---|---|
-| 1 | Duration | The user could adjust the pick-up date and time, and the duration. | The user only adjusts the duration (Day, Hour, Min). The start is set automatically. | The reservation is simpler for the user, and the implementation is simpler. | Implementation. Testing evidence: FILL IN |
-| 2 | Order check | Showed the kit, the pick-up date and time, and the duration. | Shows the kit and the duration only. | Same reason as the duration panel: the start of the reservation is no longer selected. | Implementation. Testing evidence: FILL IN |
-| 3 | All panels with a back button | The back button was only an arrow. | The back button is larger and has the text "Back". | To make it more accessible. | FILL IN |
-| 4 | Charging | The panel had Menu and Next buttons, and said the user could still make a reservation. | The Next button was removed. The panel tells the user to come back in 2 hours. | A Quest 3 usually takes 2 hours to charge. | FILL IN |
-| 5 | Not available | The panel did not show when the kit would be free. | The panel shows "Time when released" with the date and time. | So the user knows when the kit is free and is not left without options (Decision 1). | FILL IN |
-| 6 | Kit selection | Title "Welcome!", numbered buttons, a legend of colors and three colors (green, yellow, red). | Title "Choose a kit", buttons with a picture of the kit, no legend in the capture, and a fourth color (orange). | FILL IN | FILL IN |
-| 7 | Kit check | The Incomplete and Next buttons were side by side. | A large Incomplete button is shown in the capture. FILL IN (how the Next button appears). | FILL IN | FILL IN |
-| 8 | Confirmation | The return date and time were shown without labels, and the button said "Main Menu". | The return time has Day / Month / Year labels, and the button says "Home". | FILL IN | FILL IN |
+| 1 | `<screen>` | `<what the design had>` | `<what was built>` | `<why>` | Implementation / Testing |
+| 2 | | | | | |
+| 3 | | | | | |
+| 4 | | | | | |
 
-**Type** is *Implementation* (needed by Unity, the data or the time available) or *Testing* (changed after a test; cite the case or participant, for example TC-04 or P2).
+**Type** is *Implementation* (needed by Unity, data or time) or *Testing* (changed after a test; cite the case or participant, e.g. TC-04, P2).
 
-### What stayed the same
+**Candidate differences to check against your Figma file** (keep only the ones that are true):
 
-- **Reserving a kit that is not available:** the flow is the same as in Figma (Decision 1).
-- **Kit grid:** six kits in two columns and three rows, with green for available, yellow for charging and red for not available.
-- **Confirmation content:** the locker number and the return date and time.
-- **Incomplete panel:** the same message and a Menu button.
-- FILL IN (why these elements did not need to change)
-
----
-
-## 3. Limitations and future changes
-
-| Limitation | Planned change |
-|---|---|
-| Each kit stores only one end date, so a kit with two reservations is released when the last one ends, and the end of the first one is not stored. | FILL IN |
-| FILL IN | FILL IN |
+- **Duration input:** dropdowns (days 0-7, hours 0/1/2/3/6/12, minutes 0-30) instead of a free time picker, because they keep the value valid and are easy to read from `TMP_Dropdown` in code.
+- **Confirmation screen:** day, month, year, hour and minute are separate text fields, so each one is filled independently by `KitSelector`.
+- **Kit state on buttons:** four states come from `Kits.json` and are applied in `KitManager.RefreshAll()`, so the button appearance depends on saved data and not only on the design.
+- **Expired rentals:** kits whose time has passed change state automatically (`CheckExpired()`), which the static Figma frames cannot show.
+- **Changes after testing:** `<e.g. review duration became editable after P2 wanted to change it>`.
