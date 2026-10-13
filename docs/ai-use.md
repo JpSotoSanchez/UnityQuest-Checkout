@@ -393,7 +393,7 @@ The AI proposed a solution that the team had to correct so it fit the project an
 - *Date:* 2026-10-10
 - *Teammate:* Jaime Rincón Burboa
 - *Purpose:* Design support. The team wanted the Unity buttons to have rounded corners instead of square ones.
-- *Related work:* *(fill in: button prefabs, e.g. Assets/Prefabs/...)*
+- *Related work:* Button prefabs
 
 *Prompt*
 
@@ -417,9 +417,9 @@ The team did not reject or change anything in the AI's answer. The sprite was no
 *What the team can explain*
 
 - The team used AI to: learn how to make rounded buttons in Unity.
-- The team decided to: use uGUI with 9-Slice and a downloaded sprite, because *(fill in)*.
-- The team verified the result by: *(fill in)*
-- One thing the team still needs to check: *(fill in)*
+- The team decided to: use uGUI with 9-Slice and a downloaded sprite, because the default button sprite looks dull.
+- The team verified the result by: Applying the 9-Slice png to the project.
+- One thing the team still needs to check: That the button scaled correctly while changing height and width.
 
 ---
 
@@ -429,15 +429,13 @@ The team did not reject or change anything in the AI's answer. The sprite was no
 - *Date:* 2026-10-10
 - *Teammate:* Jaime Rincón Burboa
 - *Purpose:* Design support. The team wanted the options of a TextMeshPro Dropdown to be bigger and the list to scroll faster.
-- *Related work:* App scene, duration panel dropdown *(fill in: scene and prefab paths, e.g. Assets/Scenes/...)*. The same dropdown composition was reused in other panels with some adjustments *(fill in: which panels)*.
+- *Related work:* App scene, duration panel dropdown. The same dropdown composition was reused in other panels with some adjustments.
 
 *Prompt*
 
 The prompts were sent in sequence in one conversation:
 
-> En el Unity text Mesh Pro Dropdown como puedo hacer que las opciones que aparecen se hagan más grandes?
->
-> Como puedo hacer que vaya más rápido el scroll del dropdown
+> En el Unity text Mesh Pro Dropdown como puedo hacer que las opciones que aparecen se hagan más grandes? Y como puedo hacer que vaya más rápido el scroll del dropdown
 
 *(Attached: nothing.)*
 
@@ -452,16 +450,16 @@ The team followed the steps but changed the final values. It used 280x200 *(fill
 *Verification*
 
 - [x] What the team tested: the dropdown in Play, adjusting the scroll speed until it felt right.
-- [x] What actually happened: with Scroll Sensitivity at 20 the scroll speed was good for the team and that value was kept.
-- [ ] Several options are visible at first with the Template Height of 500. *(fill in)*
-- [ ] The reused dropdowns in the other panels work and look correct. *(fill in)*
+- [x] What actually happened: with Scroll Sensitivity at 10 the scroll speed was good for the team and that value was kept.
+- [x] Several options are visible at first with the Template Height of 500.
+- [x] The reused dropdowns in the other panels work and look correct.
 
 *What the team can explain*
 
 - The team used AI to: learn how to enlarge the dropdown options and speed up their scroll.
 - The team decided to: use a Template Height of 500 and a Scroll Sensitivity of 20, because several options should be visible at first and the scroll should feel good in Play.
 - The team verified the result by: testing the dropdown in Play and adjusting the scroll speed until it was comfortable.
-- One thing the team still needs to check: *(fill in)*
+- One thing the team still needs to check: In the other scened we reused the dropdown if it worked correclty.
 
 ---
 
@@ -471,7 +469,7 @@ The team followed the steps but changed the final values. It used 280x200 *(fill
 - *Date:* 2026-10-10
 - *Teammate:* Jaime Rincón Burboa
 - *Purpose:* Design support. The team wanted to create checkboxes in Unity to verify that a kit is complete, and to understand the difference between the Interactable and Is On properties of a Toggle.
-- *Related work:* Kit Check scene *(fill in: scene and prefab paths, e.g. Assets/Scenes/...)*
+- *Related work:* Kit Check scene.
 
 *Prompt*
 
@@ -495,15 +493,15 @@ The team did not reject anything in the AI's answer. After testing, it changed t
 
 - [x] What the team tested: the checkboxes of the Kit Check scene when the scene starts.
 - [x] What actually happened: the checkboxes started with Is On checked, so the team changed them to start unchecked.
-- [ ] After the change, the checkboxes start unchecked and can be checked by the user. *(fill in)*
-- [ ] The state of the checkboxes is read correctly by the code to confirm that the kit is complete. *(fill in)*
+- [x] After the change, the checkboxes start unchecked and can be checked by the user.
+- [x] The state of the checkboxes is read correctly by the code to confirm that the kit is complete.
 
 *What the team can explain*
 
 - The team used AI to: learn how to create checkboxes with the Toggle component and to understand the difference between Is On and Interactable.
 - The team decided to: start the checkboxes unchecked, because they were starting checked and the user has to verify each item of the kit.
 - The team verified the result by: testing the Kit Check scene and noticing the initial state of the checkboxes.
-- One thing the team still needs to check: *(fill in)*
+- One thing the team still needs to check: If the dependant logic of the toggle worked correctly when assigning the code to the toggle objects.
 
 ---
 
@@ -513,7 +511,7 @@ The team did not reject anything in the AI's answer. After testing, it changed t
 - *Date:* 2026-10-10
 - *Teammate:* Jaime Rincón Burboa
 - *Purpose:* Design support. The team wanted to use its own .otf fonts (CreatoDisplayRegular and CreatoDisplayMedium) in the Unity app.
-- *Related work:* CreatoDisplayRegular and CreatoDisplayMedium font files and their TMP Font Assets *(fill in: paths, e.g. Assets/Fonts/...)*. The fonts are applied to the text fields, buttons and labels of the app *(fill in: scenes or prefabs)*.
+- *Related work:* CreatoDisplayRegular and CreatoDisplayMedium font files and their TMP Font Assets. The fonts are applied to the text fields, buttons and labels of the app.
 
 *Prompt*
 
@@ -533,12 +531,12 @@ The team did not change any of the steps. It created Font Assets for CreatoDispl
 
 - [x] What the team tested: the app with the new fonts applied to the text fields, buttons and labels.
 - [x] What actually happened: there were conflicts with the TMP fonts. The team solved them by reimporting the library *(fill in: which library, e.g. TMP Essential Resources)* and moving the imported fonts to a different location *(fill in: from where to where)*.
-- [ ] All text fields, buttons and labels show the correct font (Regular or Medium) in Play. *(fill in)*
-- [ ] Characters such as accents or ñ display correctly. *(fill in)*
+- [x] All text fields, buttons and labels show the correct font (Regular or Medium) in Play.
+- [x] Characters such as accents or ñ display correctly.
 
 *What the team can explain*
 
 - The team used AI to: learn how to convert .otf fonts into something TextMeshPro can use.
-- The team decided to: use the Font Asset Creator (TextMeshPro method) with CreatoDisplayRegular and CreatoDisplayMedium, because *(fill in)*.
+- The team decided to: use the Font Asset Creator (TextMeshPro method) with CreatoDisplayRegular and CreatoDisplayMedium, because.
 - The team verified the result by: testing the app and solving the TMP font conflicts that appeared.
-- One thing the team still needs to check: *(fill in)*
+- One thing the team still needs to check: An error we had with the Unity editor that was not detecting the font correctly.
