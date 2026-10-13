@@ -64,11 +64,6 @@ These parts of the implementation shaped some of the changes:
   - A combo manager, which reads the interaction and resets the data according to the command.
   - `KitSelector`, which stores the data while the user moves through the panels so it is saved at the end.
 
-### Overview of all screens
-
-- Figma: [figmaComplete](images/figmaComplete.pdf)
-- Unity: [unityComplete](images/unityComplete.pdf)
-
 ### Screen comparison
 
 | Screen | Figma | Unity |
