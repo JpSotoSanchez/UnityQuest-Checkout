@@ -6,7 +6,7 @@ A kiosk app for tablets, built in Unity, where a user reserves a VR kit (a Meta 
 ### Github Release
 Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/releases/tag/complete
 ### Demo Video
-Link: [docs/JaimeRinconJoseSoto_Video.mp4](docs/JaimeRinconJoseSoto_Video.mp4)
+Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/JaimeRinconJoseSoto_Video.mp4
 ### Design document
 Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/design.md
 ### Testing Report
@@ -69,7 +69,7 @@ Unity **6000.5.7f1**.
    ```
    git clone https://github.com/JpSotoSanchez/UnityQuest-Checkout.git
    ```
-   The final version is in the `main` branch (final commit: FILL IN). Development was done in the branch `soto`.
+   The final version is in the `main` branch (final commit: 8436c6c). Development was done in the branch `soto`.
 3. In Unity Hub, choose **Add > Add project from disk** and select the cloned folder. Open it with version 6000.5.7f1.
 4. Open the scene `App`.
 5. In the Game view, set the resolution to `1536x2048` (portrait), which is the one used for the tests.
