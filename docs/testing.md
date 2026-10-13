@@ -5,11 +5,11 @@
 | Field | Value |
 |---|---|
 | Project | UnityQuest-Checkout (kit rental app for tablets) |
-| Branch / commit | `soto` / [`18b461d`](https://github.com/JpSotoSanchez/UnityQuest-Checkout/commit/18b461d60a02eecd29a49634f95ec4bded6c7eba) ("Added images and started the desing document") |
+| Branch / commit | `soto` / [`18b461d`](https://github.com/JpSotoSanchez/UnityQuest-Checkout/commit/18b461d60a02eecd29a49634f95ec4bded6c7eba) ("Added images and started the desing document"): build for the functional cases and P1. P2 was tested on `1fb184a`. |
 | Release / tag | `<fill in, if any>` |
 | Unity version | 6000.5.7f1 |
 | Device | Unity Editor, Play mode with the play scene (Game view resolution: `1536x2048`) |
-| Test date(s) | Usability session: 11/10/2026, about 7:27 pm. Functional cases: `7:29pm` `<fill in: date>` |
+| Test date(s) | Usability session: 11/10/2026, about 7:27 pm. Functional cases: Sunday 11/10/2026, at night, written down while testing. |
 | Tester(s) | `José Pablo Soto Sánchez` (ran the functional test cases) |
 
 **Test data.** Unless a case says otherwise, every case starts from this `Kits.json`
@@ -81,7 +81,7 @@ This case was updated to match the decision that a kit that is not available can
 | **Expected** | The summary and the saved date use the **edited** values, not the original ones. Unchecking an item shows the incomplete button and the kit is stored as incomplete (state 3, `complete: false`). |
 | **Actual** | In the Order Check panel the user can see the order and change the duration, and the data updates with the change. The result was correct. There was a problem before (the edited duration was ignored) but it was fixed; see Problem 2. |
 | **Pass/Fail** | **Pass** (after the fix of Problem 2). |
-| **Evidence** | `images/unityOrderCheck.png` `<fill in: capture showing the edited value>` |
+| **Evidence** | `images/unitybugReview.png` (duration edited in Order Check), `images/unitybugFixed.png` (result with the edited value) |
 
 ### TC-05 Saved data after restart
 
@@ -92,7 +92,7 @@ This case was updated to match the decision that a kit that is not available can
 | **Expected** | Kit 1 is still "not available" with the same return date. The incomplete kit is still in state 3. `Kits.json` matches what the UI shows. |
 | **Actual** | The information is saved after restarting. This is because of how the JSON works and how the app reads it. |
 | **Pass/Fail** | **Pass.** The data is saved. |
-| **Evidence** | `images/kitsBefore.png & images/kitsAfter.png` |
+| **Evidence** | `images/kitsBefore.png` and `images/kitsAfter.png` |
 
 ### TC-06 Scenario reset
 
@@ -129,10 +129,10 @@ only by anonymous IDs (P1, P2, P3); no names are recorded.
 | Participant | Date and time | Build | Environment |
 |---|---|---|---|
 | P1 | 11/10/2026, about 7:27 pm | `18b461d` | Unity Editor, Play mode, play scene |
-| P2 | `<fill in>` | `<fill in>` | `<fill in>` |
+| P2 (codename "Verde") | 13/10/2026, about 8:10 am | `1fb184a` (commit of 13/10/2026, 8:08 am, with the panel instructions) | Unity Editor, Play mode, play scene. Place: school library, Universidad Panamericana, Guadalajara campus |
 | P3 | `<fill in>` | `<fill in>` | `<fill in>` |
 
-So far only P1 has been tested. P2 and P3 are pending.
+P1 and P2 have been tested. P3 is pending.
 
 **Scenarios**
 
@@ -144,7 +144,7 @@ Only two scenarios are used with the participants. They are not extra test cases
 | **Success criterion** | The participant completes a successful reservation of an available kit for 90 minutes. | The participant selects a kit that is not available and can continue along the path to a possible reservation, so the path is never cut off. |
 | **Evidence (screen to reach)** | `images/unityComplete.pdf` (reservation completed) | `images/unityNoAvailable.png` (NOT AVAILABLE panel) |
 
-The captures of each participant reaching these screens are `<fill in>`, because the other participants have not been tested yet.
+Captures of the participants reaching these screens: P1 `images/passedAP1.png` (A) and `images/passedBP1.png` (B); P2 `images/passedAP2.png` (A) and `images/passedBP2.png` (B). P3: pending.
 
 **Results**
 
@@ -152,14 +152,14 @@ The captures of each participant reaching these screens are `<fill in>`, because
 |---|---|---|---|---|---|---|
 | P1 | A | Y | 01:10 | 1. The participant pressed "Incomplete" by accident, so had to go back to the start and repeat the scenario to reserve the kit as complete. | Yes, help with the reservation. | Hesitated a lot about what to do in each panel. Did not know how to move through the flow. Only simple task instructions were given. The time (01:10) includes the repeated attempt. |
 | P1 | B | Y | 00:34 | None | No | Selected a kit that was not available and followed the path to the end, also reserving it for 90 minutes. Faster than scenario A because the participant had already seen how to select a kit. |
-| P2 | A | | | | | |
-| P2 | B | | | | | |
+| P2 | A | Y | 00:36 | None (no errors in functionality or in running the code) | No for functionality; yes for translating the labels | This version already included instructions in the panels. The participant had a language barrier: the labels are in English and it was hard to read the instructions. |
+| P2 | B | Y | 00:40 | None (no errors in functionality or in running the code) | No for functionality; yes for translating the labels | Passed the scenario. Same language barrier with the English labels. |
 | P3 | A | | | | | |
 | P3 | B | | | | | |
 
-**Totals:** completion rate 2/2 recorded so far (final: `<x/6>`), average time A `<>`, average time B `<>`, total errors `<>`, help requests `<>`. (Only P1 recorded so far: A 01:10, B 00:34, 1 error and 1 help request.)
+**Totals so far (P1 and P2):** completion rate 4/4 (final: `<x/6>`), average time A 00:53 (01:10 and 00:36), average time B 00:37 (00:34 and 00:40), total errors 1 (P1: 1, P2: 0), help requests: P1 needed help with the reservation, P2 needed help only to translate the labels. P3 pending.
 
-**Patterns observed:** The participant got stuck when the panels did not give clear instructions about what to do, and pressed Incomplete by accident in scenario A. The proposed changes for the first one are in Problem 1 (section 4). `<fill in after P2 and P3>`
+**Patterns observed:** The participant got stuck when the panels did not give clear instructions about what to do, and pressed Incomplete by accident in scenario A. The proposed changes for the first one are in Problem 1 (section 4). P2 completed both scenarios without help for functionality in a version that already had instructions in the panels, but had trouble reading the English labels (Problem 3). `<fill in after P3>`
 
 ---
 
@@ -174,10 +174,10 @@ testing (extra devices, longer durations, rapid taps, restart in the middle of a
 |---|---|
 | **Found in** | P1, scenarios A and B (usability session of 11/10/2026, build `18b461d`) |
 | **Description** | The participant hesitated a lot about what to do in each panel. Scenario B (00:34) was faster than scenario A (01:10) because the participant had already seen how to select a kit. In scenario A the participant did not know how to move through the flow. The participant was only given simple task instructions. |
-| **Before (evidence)** | `docs/evidence/p1-before.png` |
-| **Fix** | Status: planned, not implemented yet. Planned changes: <br>1. Change the title "Duration" to "Select a duration", and do the same in every panel so it is clear that the user has to choose something. In the kit check, add a text saying the user has to confirm that the items are complete in order to continue. <br>2. Add an explicit instruction in every panel about what to tap, for example in the review panel: "Check that the kit is complete". <br>3. Show clearly the order of the steps (what is done first and what follows). <br>4. Review that the whole flow is in order and consistent between panels. <br>`<fill in: file and commit when done>` |
-| **After (evidence)** | `docs/evidence/p1-after.png` |
-| **Retest result** | `<Pass/Fail>` |
+| **Before (evidence)** | Old panels without instructions: `images/unityDurationOld.png`, `images/unityKitCheckOld.png`, `images/unityOrderCheckOld.png`. P1 session: `images/passedAP1.png`, `images/passedBP1.png`. |
+| **Fix** | The panels were corrected so that they include instructions. The fix is in the commit `1fb184a` of 13/10/2026, 8:08 am, and only the Unity scene was changed (no scripts). |
+| **After (evidence)** | Panels with instructions: `images/unityDuration.png`, `images/unityKitCheck.png`, `images/unityOrderCheck.png`. P2 session: `images/passedAP2.png`, `images/passedBP2.png`. |
+| **Retest result** | **Pass.** P2 ("Verde") completed scenario A in 00:36 and scenario B in 00:40 with no help for functionality (P1: 01:10 and 00:34, with help). |
 
 ### Problem 2: The duration edited in Order Check was ignored
 
@@ -185,24 +185,21 @@ testing (extra devices, longer durations, rapid taps, restart in the middle of a
 |---|---|
 | **Found in** | TC-04 (editing choices), found by the team while testing |
 | **Description** | When the user changed the duration in the Order Check panel, the change was ignored and the reservation was saved with the duration chosen in the earlier duration panel. `ConfirmReservation()` in `KitSelector.cs` read the duration with `ReadDuration()` instead of `ReadReviewDuration()`. |
-| **Before (evidence)** | `<fill in: capture or note showing the ignored edit>` |
-| **Fix** | `ConfirmReservation()` now uses `ReadReviewDuration()`, so the values edited in Order Check are the ones saved. File: `KitSelector.cs`. Commit: `<fill in>` |
-| **After (evidence)** | `<fill in: capture showing the edited duration in the saved date>` |
+| **Before (evidence)** | `images/unitybugDuration.png` (duration chosen), `images/unitybugReview.png` (duration edited in Order Check), `images/unitybugUnfixed.png` (result: the edit was ignored) |
+| **Fix** | `ConfirmReservation()` now uses `ReadReviewDuration()`, so the values edited in Order Check are the ones saved. File: `KitSelector.cs`. Commit: `18b461d`. |
+| **After (evidence)** | `images/unitybugFixed.png` (result: the edited duration is used) |
 | **Retest result** | Pass: the edit is respected and the data updates. |
 
-### Candidate problems to verify
+### Problem 3: The labels and instructions are only in English
 
-These were spotted while reading the code or during the sessions. Keep only the ones that actually reproduce in testing.
-
-- **Accidental "Incomplete" press (seen in P1, scenario A).** The participant pressed Incomplete by accident and had to go back to the start. There is no confirmation or undo for this button, and the kit is reported as incomplete. Relates to TC-04.
-- **Reservation does not check kit state.** `ReserveKit()` sets state 2 without checking the kit is in state 0.
-  Relates to TC-02 and TC-03.
-- **Zero duration is accepted.** A duration of 0 d / 0 h / 0 min can be confirmed, so the kit has to be returned
-  immediately. Decide if this is acceptable or should be blocked. Relates to TC-03.
-- **Incomplete reset.** `ResetSelection()` does not clear the review dropdowns or the Order Check text, so the
-  next order may show stale values. Relates to TC-04.
-- **Locker number offset.** The kit number shown is `kitSelected` as-is; if `KitSelected(n)` is 0-based and
-  `kitNumber` in the JSON is 1-based, the locker number shown could be off by one. Relates to TC-01.
+| | |
+|---|---|
+| **Found in** | P2 (codename "Verde"), scenarios A and B |
+| **Description** | Even though the version tested already had instructions in the panels, the participant had a language barrier: the labels are in English and it was hard to read the instructions. The participant needed help to translate the labels, although not for functionality. |
+| **Before (evidence)** | `images/passedAP2.png`, `images/passedBP2.png` (labels in English) |
+| **Fix** | **Not fixed.** The code for it exists, but there was no time to implement it. It stays as an unresolved issue (section 5). |
+| **After (evidence)** | Not applicable |
+| **Retest result** | Not applicable (not fixed) |
 
 ---
 
@@ -210,12 +207,20 @@ These were spotted while reading the code or during the sessions. Keep only the 
 
 | ID | Description | Severity | Reason not fixed / planned action |
 |---|---|---|---|
-| | | | |
+| Problem 3 | Labels and instructions only in English; P2 had a language barrier and needed help to translate them. | Medium | The code exists but there was no time to implement it. Planned action: implement it and retest with a Spanish-speaking participant. |
+| L-1 | Accidental "Incomplete" press (seen in P1, scenario A): the button has no confirmation or undo, so the kit is reported as incomplete and the user has to start again. | Medium | Not fixed because of time. Planned action: add a confirmation before reporting. |
+| L-2 | A duration of 0 d / 0 h / 0 min is accepted (TC-03), so the kit has to be returned immediately. | Low | Not fixed because of time. Planned action: block it or show a message. |
+| L-3 | `ReserveKit()` sets state 2 without checking that the kit is in state 0 (found when reading the code, not reproduced because the panels prevent it). | Low | Not fixed because of time. |
+| L-4 | `ResetSelection()` does not clear the Order Check dropdowns or text, so the next order may show old values (found when reading the code, not reproduced). | Low | Not fixed because of time. |
+| L-5 | The locker number shown is `kitSelected` as-is; if the numbering of the buttons and the JSON differ, it could be off by one (found when reading the code, not reproduced). | Low | Not fixed because of time. |
+
+These issues are limitations of this version of the app. They will not be implemented or fixed because of time.
 
 **Limitations of this testing**
 
 - The tests were run in the Unity Editor (Play mode, Game view), not on a physical tablet.
-- Only P1 has been tested so far. P2 and P3 are pending.
+- Only P1 and P2 have been tested so far. P3 is pending.
+- The interface is only in English, so the tests do not show how the app works for users who do not read English (Problem 3).
 - `<fill in: other limitations>`
 
 ## 6. Conclusion
