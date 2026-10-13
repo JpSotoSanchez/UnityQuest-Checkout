@@ -6,7 +6,7 @@
 |---|---|
 | Project | UnityQuest-Checkout (kit rental app for tablets) |
 | Branch / commit | `soto` / [`18b461d`](https://github.com/JpSotoSanchez/UnityQuest-Checkout/commit/18b461d60a02eecd29a49634f95ec4bded6c7eba) ("Added images and started the desing document"): build for the functional cases and P1. P2 was tested on `1fb184a`. |
-| Release / tag | `<fill in, if any>` |
+| Release / tag | None |
 | Unity version | 6000.5.7f1 |
 | Device | Unity Editor, Play mode with the play scene (Game view resolution: `1536x2048`) |
 | Test date(s) | Usability session: 11/10/2026, about 7:27 pm. Functional cases: Sunday 11/10/2026, at night, written down while testing. |
@@ -130,9 +130,9 @@ only by anonymous IDs (P1, P2, P3); no names are recorded.
 |---|---|---|---|
 | P1 | 11/10/2026, about 7:27 pm | `18b461d` | Unity Editor, Play mode, play scene |
 | P2 (codename "Verde") | 13/10/2026, about 8:10 am | `1fb184a` (commit of 13/10/2026, 8:08 am, with the panel instructions) | Unity Editor, Play mode, play scene. Place: school library, Universidad Panamericana, Guadalajara campus |
-| P3 | `<fill in>` | `<fill in>` | `<fill in>` |
+| P3 | 13/10/2026, about 1:04 pm | `37488b7` | Unity Editor, Play mode, play scene `<fill in: place>` |
 
-P1 and P2 have been tested. P3 is pending.
+All three participants (P1, P2 and P3) have been tested.
 
 **Scenarios**
 
@@ -144,7 +144,7 @@ Only two scenarios are used with the participants. They are not extra test cases
 | **Success criterion** | The participant completes a successful reservation of an available kit for 90 minutes. | The participant selects a kit that is not available and can continue along the path to a possible reservation, so the path is never cut off. |
 | **Evidence (screen to reach)** | `images/unityComplete.pdf` (reservation completed) | `images/unityNoAvailable.png` (NOT AVAILABLE panel) |
 
-Captures of the participants reaching these screens: P1 `images/passedAP1.png` (A) and `images/passedBP1.png` (B); P2 `images/passedAP2.png` (A) and `images/passedBP2.png` (B). P3: pending.
+Captures of the participants reaching these screens: P1 `images/passedAP1.png` (A) and `images/passedBP1.png` (B); P2 `images/passedAP2.png` (A) and `images/passedBP2.png` (B); P3 `images/passedAP3.png` (A) and `images/passedBP3.png` (B).
 
 **Results**
 
@@ -154,12 +154,12 @@ Captures of the participants reaching these screens: P1 `images/passedAP1.png` (
 | P1 | B | Y | 00:34 | None | No | Selected a kit that was not available and followed the path to the end, also reserving it for 90 minutes. Faster than scenario A because the participant had already seen how to select a kit. |
 | P2 | A | Y | 00:36 | None (no errors in functionality or in running the code) | No for functionality; yes for translating the labels | This version already included instructions in the panels. The participant had a language barrier: the labels are in English and it was hard to read the instructions. |
 | P2 | B | Y | 00:40 | None (no errors in functionality or in running the code) | No for functionality; yes for translating the labels | Passed the scenario. Same language barrier with the English labels. |
-| P3 | A | | | | | |
-| P3 | B | | | | | |
+| P3 | A | Y | 00:18 | None (no errors in data, restart, running the code or from the participant) | None reported | Completed the scenario with the fastest time of the three participants. |
+| P3 | B | Y | 00:11 | None (no errors in data, restart, running the code or from the participant) | None reported | Completed the scenario with the fastest time of the three participants. |
 
-**Totals so far (P1 and P2):** completion rate 4/4 (final: `<x/6>`), average time A 00:53 (01:10 and 00:36), average time B 00:37 (00:34 and 00:40), total errors 1 (P1: 1, P2: 0), help requests: P1 needed help with the reservation, P2 needed help only to translate the labels. P3 pending.
+**Totals (P1, P2 and P3):** completion rate 6/6, average time A 00:41 (01:10, 00:36 and 00:18), average time B 00:28 (00:34, 00:40 and 00:11), total errors 1 (P1: 1, P2: 0, P3: 0), help requests: P1 needed help with the reservation, P2 needed help only to translate the labels, P3 none reported.
 
-**Patterns observed:** The participant got stuck when the panels did not give clear instructions about what to do, and pressed Incomplete by accident in scenario A. The proposed changes for the first one are in Problem 1 (section 4). P2 completed both scenarios without help for functionality in a version that already had instructions in the panels, but had trouble reading the English labels (Problem 3). `<fill in after P3>`
+**Patterns observed:** The participant got stuck when the panels did not give clear instructions about what to do, and pressed Incomplete by accident in scenario A. The proposed changes for the first one are in Problem 1 (section 4). P2 completed both scenarios without help for functionality in a version that already had instructions in the panels, but had trouble reading the English labels (Problem 3). P3 completed both scenarios with the shortest times (00:18 and 00:11) and no errors. The times of the participants who used the version with panel instructions (P2 and P3) were shorter in scenario A than the time of P1.
 
 ---
 
@@ -177,7 +177,7 @@ testing (extra devices, longer durations, rapid taps, restart in the middle of a
 | **Before (evidence)** | Old panels without instructions: `images/unityDurationOld.png`, `images/unityKitCheckOld.png`, `images/unityOrderCheckOld.png`. P1 session: `images/passedAP1.png`, `images/passedBP1.png`. |
 | **Fix** | The panels were corrected so that they include instructions. The fix is in the commit `1fb184a` of 13/10/2026, 8:08 am, and only the Unity scene was changed (no scripts). |
 | **After (evidence)** | Panels with instructions: `images/unityDuration.png`, `images/unityKitCheck.png`, `images/unityOrderCheck.png`. P2 session: `images/passedAP2.png`, `images/passedBP2.png`. |
-| **Retest result** | **Pass.** P2 ("Verde") completed scenario A in 00:36 and scenario B in 00:40 with no help for functionality (P1: 01:10 and 00:34, with help). |
+| **Retest result** | **Pass.** P2 ("Verde") completed scenario A in 00:36 and scenario B in 00:40 with no help for functionality (P1: 01:10 and 00:34, with help). P3 (version `37488b7`) completed A in 00:18 and B in 00:11 with no errors. |
 
 ### Problem 2: The duration edited in Order Check was ignored
 
@@ -219,10 +219,9 @@ These issues are limitations of this version of the app. They will not be implem
 **Limitations of this testing**
 
 - The tests were run in the Unity Editor (Play mode, Game view), not on a physical tablet.
-- Only P1 and P2 have been tested so far. P3 is pending.
+- Only three participants were tested, so the sample is small, and each session was short.
 - The interface is only in English, so the tests do not show how the app works for users who do not read English (Problem 3).
-- `<fill in: other limitations>`
 
 ## 6. Conclusion
 
-`<2-4 sentences: what passed, what was fixed, what remains, confidence in the build.>`
+All six functional test cases passed, and the three participants completed both usability scenarios (6/6), with times that dropped from 01:10 (P1) to 00:18 (P3) in scenario A and with no errors in P2 and P3. Two problems were found, fixed and retested: the panels without instructions (Problem 1, fixed in the scene and retested with P2 and P3) and the duration edited in Order Check being ignored (Problem 2, fixed in `ConfirmReservation()`). Still open are the language barrier (Problem 3), which was not implemented because of time, and the limitations L-1 to L-5. We are fairly confident in the build for a prototype, but it was only tested in the Unity Editor and with three participants, so it still needs testing on a real tablet and with Spanish labels.

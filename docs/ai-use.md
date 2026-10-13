@@ -26,6 +26,8 @@ For each relevant use, the team records the tool, date, teammate, purpose, promp
 | 11 | 2026-10-10 | Jaime Rincón Burboa | Larger TMP Dropdown options and faster scroll | Design support |
 | 12 | 2026-10-10 | Jaime Rincón Burboa | Checkboxes (Toggle) for the Kit Check scene | Design support |
 | 13 | 2026-10-10 | Jaime Rincón Burboa | Converting OTF fonts for TextMeshPro | Design support |
+| 14 | 2026-10-12 to 2026-10-13 | José Pablo Soto Sánchez | Putting the team's real results into the testing report | Testing support | 
+| 15 | 2026-10-12 to 2026-10-13 | José Pablo Soto Sánchez | Putting the team's decisions and screenshots into the design justification | Design support |
 
 ---
 
@@ -389,32 +391,32 @@ The AI proposed a solution that the team had to correct so it fit the project an
 
 ## Entry 10: Rounded buttons with 9-Slice
 
-- *Tool:* Gemini 3.5 Thinking (Google)
-- *Date:* 2026-10-10
-- *Teammate:* Jaime Rincón Burboa
-- *Purpose:* Design support. The team wanted the Unity buttons to have rounded corners instead of square ones.
-- *Related work:* Button prefabs
+- **Tool:** Gemini 3.5 Thinking (Google)
+- **Date:** 2026-10-10
+- **Teammate:** Jaime Rincón Burboa
+- **Purpose:** Design support. The team wanted the Unity buttons to have rounded corners instead of square ones.
+- **Related work:** Button prefabs
 
-*Prompt*
+**Prompt**
 
 > En Unity puedo hacer que los botones tengan bordes redondos en vez de ser cuadrados?
 
-*(Attached: nothing.)*
+**(Attached: nothing.)**
 
-*Response used*
+**Response used**
 
 The AI explained two options: a 9-Slice sprite in uGUI (the traditional Canvas) and the Border Radius property in UI Toolkit. For uGUI it gave four steps: set the sprite's Texture Type to Sprite (2D and UI), adjust the four guides in the Sprite Editor so the curves stay inside the corners, assign the sprite to the button's Source Image, and change Image Type to Sliced. The team used the uGUI 9-Slice option. The UI Toolkit option was not used.
 
-*Modifications*
+**Modifications**
 
 The team did not reject or change anything in the AI's answer. The sprite was not made by the AI: the team downloaded it. The team applied the result to its buttons and then turned them into prefabs.
 
-*Verification*
+**Verification**
 
 - [x] What the team tested: following the AI's steps on the team's buttons with the downloaded sprite and Image Type set to Sliced.
 - [x] What actually happened: the verification checks listed in each step worked correctly. *(fill in: what was seen, e.g. corners stay rounded when the button is resized)*
 
-*What the team can explain*
+**What the team can explain**
 
 - The team used AI to: learn how to make rounded buttons in Unity.
 - The team decided to: use uGUI with 9-Slice and a downloaded sprite, because the default button sprite looks dull.
@@ -425,36 +427,36 @@ The team did not reject or change anything in the AI's answer. The sprite was no
 
 ## Entry 11: Larger TMP Dropdown options and faster scroll
 
-- *Tool:* Gemini 3.5 Thinking (Google)
-- *Date:* 2026-10-10
-- *Teammate:* Jaime Rincón Burboa
-- *Purpose:* Design support. The team wanted the options of a TextMeshPro Dropdown to be bigger and the list to scroll faster.
-- *Related work:* App scene, duration panel dropdown. The same dropdown composition was reused in other panels with some adjustments.
+- **Tool:** Gemini 3.5 Thinking (Google)
+- **Date:** 2026-10-10
+- **Teammate:** Jaime Rincón Burboa
+- **Purpose:** Design support. The team wanted the options of a TextMeshPro Dropdown to be bigger and the list to scroll faster.
+- **Related work:** App scene, duration panel dropdown. The same dropdown composition was reused in other panels with some adjustments.
 
-*Prompt*
+**Prompt**
 
 The prompts were sent in sequence in one conversation:
 
 > En el Unity text Mesh Pro Dropdown como puedo hacer que las opciones que aparecen se hagan más grandes? Y como puedo hacer que vaya más rápido el scroll del dropdown
 
-*(Attached: nothing.)*
+**(Attached: nothing.)**
 
-*Response used*
+**Response used**
 
 For the size, the AI explained that the Template object has to be made visible temporarily, that the Height of Content and Item must have the same value, and that the font size is changed in Item Label. For the scroll speed, it explained that the Scroll Sensitivity of the Scroll Rect on the Template controls it, and it suggested an optional inertia and Deceleration Rate adjustment. The team used the steps for Content, Item, Item Label and Scroll Sensitivity. The team did not use the optional inertia adjustment.
 
-*Modifications*
+**Modifications**
 
 The team followed the steps but changed the final values. It used 280x200 *(fill in: which object this size belongs to)* and a Template Height of 500, so that several options are visible at first in the dropdown. After testing in Play, it set Scroll Sensitivity to 20. The inertia was not added.
 
-*Verification*
+**Verification**
 
 - [x] What the team tested: the dropdown in Play, adjusting the scroll speed until it felt right.
 - [x] What actually happened: with Scroll Sensitivity at 10 the scroll speed was good for the team and that value was kept.
 - [x] Several options are visible at first with the Template Height of 500.
 - [x] The reused dropdowns in the other panels work and look correct.
 
-*What the team can explain*
+**What the team can explain**
 
 - The team used AI to: learn how to enlarge the dropdown options and speed up their scroll.
 - The team decided to: use a Template Height of 500 and a Scroll Sensitivity of 20, because several options should be visible at first and the scroll should feel good in Play.
@@ -465,13 +467,13 @@ The team followed the steps but changed the final values. It used 280x200 *(fill
 
 ## Entry 12: Checkboxes (Toggle) for the Kit Check scene
 
-- *Tool:* Gemini 3.5 Thinking (Google)
-- *Date:* 2026-10-10
-- *Teammate:* Jaime Rincón Burboa
-- *Purpose:* Design support. The team wanted to create checkboxes in Unity to verify that a kit is complete, and to understand the difference between the Interactable and Is On properties of a Toggle.
-- *Related work:* Kit Check scene.
+- **Tool:** Gemini 3.5 Thinking (Google)
+- **Date:** 2026-10-10
+- **Teammate:** Jaime Rincón Burboa
+- **Purpose:** Design support. The team wanted to create checkboxes in Unity to verify that a kit is complete, and to understand the difference between the Interactable and Is On properties of a Toggle.
+- **Related work:** Kit Check scene.
 
-*Prompt*
+**Prompt**
 
 The prompts were sent in sequence in one conversation:
 
@@ -479,24 +481,24 @@ The prompts were sent in sequence in one conversation:
 >
 > Whats the difference betwen Interactable and Is on?
 
-*(Attached: nothing.)*
+**(Attached: nothing.)**
 
-*Response used*
+**Response used**
 
-For the first prompt, the AI explained that the standard checkbox in Unity is the Toggle from the uGUI system. It gave four steps: create the Toggle from the Hierarchy, customize the Background and Checkmark images, create a script with a public function that receives a boolean (CheckboxHandler.cs with OnToggleValueChanged), and link that function to the On Value Changed event. For the second prompt, it explained that Is On is the checked or unchecked value, while Interactable controls whether the user can change it, and gave a table with the four combinations. The team followed the steps to create the Toggles. The script with OnToggleValueChanged was not modified by the teammate who wrote this entry; it was used by the teammate in charge of the code and functionality. *(fill in: whether Interactable was used in the app, and whether the Background and Checkmark images were customized.)*
+For the first prompt, the AI explained that the standard checkbox in Unity is the Toggle from the uGUI system. It gave four steps: create the Toggle from the Hierarchy, customize the Background and Checkmark images, create a script with a public function that receives a boolean (CheckboxHandler.cs with OnToggleValueChanged), and link that function to the On Value Changed event. For the second prompt, it explained that Is On is the checked or unchecked value, while Interactable controls whether the user can change it, and gave a table with the four combinations. The team followed the steps to create the Toggles. The script with OnToggleValueChanged was not modified by the teammate who wrote this entry; it was used by the teammate in charge of the code and functionality. 
 
-*Modifications*
+**Modifications**
 
-The team did not reject anything in the AI's answer. After testing, it changed the Toggles so they start unchecked (Is On turned off), because they were starting checked. *(fill in: any other change, e.g. custom sprites, and whether the script was changed by the teammate who used it.)*
+The team did not reject anything in the AI's answer. After testing, it changed the Toggles so they start unchecked (Is On turned off), because they were starting checked. 
 
-*Verification*
+**Verification**
 
 - [x] What the team tested: the checkboxes of the Kit Check scene when the scene starts.
 - [x] What actually happened: the checkboxes started with Is On checked, so the team changed them to start unchecked.
 - [x] After the change, the checkboxes start unchecked and can be checked by the user.
 - [x] The state of the checkboxes is read correctly by the code to confirm that the kit is complete.
 
-*What the team can explain*
+**What the team can explain**
 
 - The team used AI to: learn how to create checkboxes with the Toggle component and to understand the difference between Is On and Interactable.
 - The team decided to: start the checkboxes unchecked, because they were starting checked and the user has to verify each item of the kit.
@@ -507,36 +509,122 @@ The team did not reject anything in the AI's answer. After testing, it changed t
 
 ## Entry 13: Converting OTF fonts for TextMeshPro
 
-- *Tool:* Gemini 3.5 Thinking (Google)
-- *Date:* 2026-10-10
-- *Teammate:* Jaime Rincón Burboa
-- *Purpose:* Design support. The team wanted to use its own .otf fonts (CreatoDisplayRegular and CreatoDisplayMedium) in the Unity app.
-- *Related work:* CreatoDisplayRegular and CreatoDisplayMedium font files and their TMP Font Assets. The fonts are applied to the text fields, buttons and labels of the app.
+- **Tool:** Gemini 3.5 Thinking (Google)
+- **Date:** 2026-10-10
+- **Teammate:** Jaime Rincón Burboa
+- **Purpose:** Design support. The team wanted to use its own .otf fonts (CreatoDisplayRegular and CreatoDisplayMedium) in the Unity app.
+- **Related work:** CreatoDisplayRegular and CreatoDisplayMedium font files and their TMP Font Assets. The fonts are applied to the text fields, buttons and labels of the app.
 
-*Prompt*
+**Prompt**
 
 > How to transform an otf font into something unity can use?
 
-*(Attached: nothing.)*
+**(Attached: nothing.)**
 
-*Response used*
+**Response used**
 
 The AI explained that Unity supports .otf files and gave two methods: TextMeshPro (converting the font into a Font Asset with the Font Asset Creator) and Legacy UI Text (dragging the .otf file directly into the Font slot). For TextMeshPro it gave four steps: import the .otf file into the Project window, open Window > TextMeshPro > Font Asset Creator, generate the font atlas (Sampling Point Size on Auto Sizing) and save it, and assign the Font Asset to the text object. The team used the TextMeshPro method with the Font Asset Creator. The Legacy UI Text method was not used.
 
-*Modifications*
+**Modifications**
 
 The team did not change any of the steps. It created Font Assets for CreatoDisplayRegular and CreatoDisplayMedium and applied them to all text fields, buttons and labels. The AI's answer did not mention the conflicts with TMP fonts described in Verification; the team solved them on its own.
 
-*Verification*
+**Verification**
 
 - [x] What the team tested: the app with the new fonts applied to the text fields, buttons and labels.
 - [x] What actually happened: there were conflicts with the TMP fonts. The team solved them by reimporting the library *(fill in: which library, e.g. TMP Essential Resources)* and moving the imported fonts to a different location *(fill in: from where to where)*.
 - [x] All text fields, buttons and labels show the correct font (Regular or Medium) in Play.
 - [x] Characters such as accents or ñ display correctly.
 
-*What the team can explain*
+**What the team can explain**
 
 - The team used AI to: learn how to convert .otf fonts into something TextMeshPro can use.
 - The team decided to: use the Font Asset Creator (TextMeshPro method) with CreatoDisplayRegular and CreatoDisplayMedium, because.
 - The team verified the result by: testing the app and solving the TMP font conflicts that appeared.
 - One thing the team still needs to check: An error we had with the Unity editor that was not detecting the font correctly.
+
+---
+
+## Entry 14: Putting the team's real results into the testing report
+ 
+- **Tool:** Claude (Anthropic), in the same conversation used to develop `KitSelector` and `KitManager`, so it had the project code as context.
+- **Date:** 2026-10-12 to 2026-10-13
+- **Teammate:** José Pablo Soto Sánchez (UPSoto)
+- **Purpose:** Testing support. The team already had its own results (functional test cases, three usability sessions, problems and fixes) and needed them arranged in the format required for `docs/testing.md`. All the information is the team's own; the AI only helped put it in the requested format.
+- **Related work:** [docs/testing.md](testing.md), `docs/images/` (evidence files), `Assets/Scripts/KitSelector.cs`, `Assets/Scripts/KitManager.cs`, `Kits.json`
+**Prompt**
+ 
+The team sent many short messages (dictated, in Spanish) over two days: the result of each test case, the data of each participant, the evidence file names and the commit hashes. They are summarized here with one general prompt. The first message started like this:
+ 
+> Para llenar los test cases, vamos a ir poniendo lo siguiente. Yo, Soto, hice o realicé los test cases. [...]
+ 
+*(Followed by the team's own result, pass/fail criterion and evidence for each case, and later by the times, errors, help, commits, screenshots and decisions about P1, P2 and P3.)*
+ 
+**Response used**
+ 
+The AI placed what the team said in the tables of `docs/testing.md`: the six functional cases, the session log, the results table, the problems with before and after evidence, and the unresolved issues. It also did the following with the team's data:
+ 
+- It calculated the totals and averages of the usability sessions from the times the team gave (completion 6/6, average time of scenario A and of scenario B).
+- It wrote the conclusion using the results of the three participants.
+- It rewrote the expected result of some cases to match what the team had decided (for example, that a kit that is not available can still be reserved, and that the reset is done with a key combo and not with a button).
+- It listed what was still missing at each step, and it moved the candidate problems found by reading the code to the unresolved issues table, as limitations, because the team decided they would not be fixed for lack of time.
+- It proposed the severity of the unresolved issues, and it suggested some evidence images from their file names (for TC-03 and TC-04).
+**Modifications**
+ 
+The team corrected the AI's drafts every time something did not match what really happened: the pass criteria of TC-01 and TC-02, the results of TC-03, the real commits and times of the sessions, where the sessions took place, which problem was fixed in which commit, and the names of the evidence images. The team also decided which problems count as fixed (Problem 1 and Problem 2) and which remain unresolved (Problem 3 and the limitations).
+ 
+**Verification**
+ 
+- [x] All the results, times, errors and observations come from the functional tests and the three usability sessions that the team ran itself. The AI did not run the app.
+- [x] The team gave the pass criterion of every case and the participants' data, and checked the totals against its own times.
+- [x] The evidence files were named by the team and saved in `docs/images/`.
+- [x] The team checked that every evidence file name written in `docs/testing.md` matches a real file in `docs/images/`.
+
+**What the team can explain**
+ 
+- The team used AI to: arrange its own test results, times and evidence in the format required for the testing report, and to calculate the totals and write a first version of the conclusion.
+- The team decided to: use AI only for arranging the information, because all the data came from the team's own tests and the team wanted to avoid mistakes in such a long document.
+- The team verified the result by: correcting the AI's drafts against what really happened in each test and session, and checking the commits, times and files it wrote.
+- One thing the team still needs to check: that the evidence images and commit links in `docs/testing.md` open correctly in the repository.
+---
+ 
+## Entry 15: Putting the team's decisions and screenshots into the design justification
+ 
+- **Tool:** Claude (Anthropic), in the same conversation used to develop `KitSelector` and `KitManager`, so it had the project code as context.
+- **Date:** 2026-10-12 to 2026-10-13
+- **Teammate:** José Pablo Soto Sánchez (UPSoto)
+- **Purpose:** Design support. The team had already decided its three interaction decisions and had its own Figma and Unity screenshots, and needed them arranged in the format required for `docs/design.md`. The information (decisions, reasons and changes) is the team's own; the AI only helped put it in the requested format.
+- **Related work:** [docs/design.md](design.md), [docs/testing.md](testing.md), `docs/images/` (Figma and Unity screenshots)
+**Prompt**
+ 
+The team sent several messages (dictated, in Spanish). They are summarized here with one general prompt. The first message started like this:
+ 
+> Vamos a trabajar en mi desing.md. Si me falta algo, no lo llenes ni lo inventes, solo pon en mayúsculas FILL IN, como en el ia use report. [...]
+ 
+*(Followed by the course requirements, the list of the team's own Figma and Unity screenshots, how the data and managers of the app work, the three decisions, the HCI principle of Decision 3, and the changes from Figma to Unity with their reasons. The team also attached the Figma and Unity PDFs.)*
+ 
+**Response used**
+ 
+The AI arranged the team's information in `docs/design.md`: the three decisions with user problem, how the design addresses it and images; the screenshots grouped by screen to compare Figma and Unity; the implementation context (three JSON files and the managers of the scene); the table of what changed and why; and what stayed the same. It followed the team's instruction of not inventing anything: everything the team did not say was marked FILL IN. It also did the following:
+ 
+- It looked at the Figma and Unity screenshots and noticed differences the team had not listed (the kit selection title and pictures, the Next button in the kit check, the Day / Month / Year labels and the "Home" button on the confirmation screen). It added them to the table with the reason left as FILL IN, so the team could confirm or delete them.
+- **Own correction:** the team said that Decision 1 worked the same as in Figma, but in the Figma screenshot the NOT AVAILABLE panel did not show the release time. The AI changed the text to say that the flow is the same and that showing the release time is new in Unity, and asked the team to correct it if that was wrong.
+- It pointed out a typo in the Unity Incomplete panel ("ast" instead of "as").
+- It suggested possible HCI principles for Decisions 1 and 2, but did not write them in the document because the team had not chosen them.
+**Modifications**
+ 
+The decisions, the user problems, the HCI principle of Decision 3 (affordance and consistency) and the reasons for the changes between Figma and Unity (duration and Order Check without the start date, a larger Back button, Charging without the Next button) came from the team. The team also chose to keep the images in `docs/images/`.
+ 
+**Verification**
+ 
+- [x] The decisions, reasons and changes in `docs/design.md` come from the team's own app and Figma design. The AI did not have access to the Figma file or to the running app, only to the screenshots and PDFs the team attached.
+- [x] The team's instruction to mark missing information as FILL IN, and not to invent it, was followed.
+- [x] The extra differences that the AI found in the screenshots were checked by the team against the real Figma file and Unity scene before being kept.
+- [x] All the FILL IN fields (HCI principles of Decisions 1 and 2, user problem of Decision 3, testing evidence, reasons of the last changes and the limitations table) were completed by the team.
+
+**What the team can explain**
+ 
+- The team used AI to: arrange its own decisions, reasons and screenshots in the format required for the design justification, and to compare the Figma and Unity screenshots.
+- The team decided to: use AI only for arranging the information and to mark with FILL IN everything that was not known, because the justification has to be based on the team's real decisions and not on invented text.
+- The team verified the result by: reading each decision and change against its own Figma design and Unity app, and correcting what the AI wrote when it did not match (for example Decision 1).
+- One thing the team still needs to check: that every HCI principle and testing evidence in `docs/design.md` is the team's own reasoning and points to a real test case or participant in `docs/testing.md`.
