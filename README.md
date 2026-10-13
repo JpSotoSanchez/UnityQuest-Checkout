@@ -2,6 +2,18 @@
 
 A kiosk app for tablets, built in Unity, where a user reserves a VR kit (a Meta Quest headset, its two controllers and its charger). Project of the Human Computer Interaction course, Universidad Panamericana.
 
+## Deliveries
+### Github Release
+Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/releases/tag/complete
+### Demo Video
+Link: [docs/JaimeRinconJoseSoto_Video.mp4](docs/JaimeRinconJoseSoto_Video.mp4)
+### Design document
+Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/design.md
+### Testing Report
+Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/testing.md
+### AI logs
+Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/ai-use.md
+
 ## Project Summary
 
 UnityQuest-Checkout lets a user choose one of six kits, choose how long to keep it, check that the kit is complete and confirm the reservation. The user is never left without options: if the kit is not available, the app shows when it will be free and lets the user reserve it for after the current reservation.
@@ -131,15 +143,3 @@ The two scenarios are the ones used in the usability tests. Reset the data first
 To also see the other panels in scenario B: tap the charging kit (kit 2) to see the Charging panel, and the incomplete kit (kit 4) to see the Incomplete panel. Neither one allows a reservation.
 
 The functional test cases and the results of the three participants are in [the testing report](docs/testing.md).
-
-## Documents
-### Github Release
-Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/releases/tag/complete
-### Demo Video
-Link: [docs/JaimeRinconJoseSoto_Video.mp4](docs/JaimeRinconJoseSoto_Video.mp4)
-### Design document
-Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/design.md
-### Testing Report
-Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/testing.md
-### AI logs
-Link: https://github.com/JpSotoSanchez/UnityQuest-Checkout/blob/main/docs/ai-use.md
