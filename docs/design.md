@@ -87,12 +87,13 @@ These parts of the implementation shaped some of the changes:
 
 ### What changed and why
 
-| # | Screen | Figma | Unity | Reason | Type |
-|---|---|---|---|---|---|
-| 1 | `<screen>` | `<what the design had>` | `<what was built>` | `<why>` | Implementation / Testing |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
+| # | Screen | What Changed | Reason |
+|---|---|---|---|
+| 1 | Kit selection |  |  |
+| 2 | Duration |  |  |
+| 3 | Kit check |  |  |
+| 4 | Order check |  |  |
+| 4 | Charging |  |  |
 
 **Type** is *Implementation* (needed by Unity, data or time) or *Testing* (changed after a test; cite the case or participant, e.g. TC-04, P2).
 
