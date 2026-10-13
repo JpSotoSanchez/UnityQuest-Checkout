@@ -6,7 +6,7 @@
 |---|---|
 | Project | UnityQuest-Checkout (kit rental app for tablets) |
 | Branch / commit | `soto` / [`18b461d`](https://github.com/JpSotoSanchez/UnityQuest-Checkout/commit/18b461d60a02eecd29a49634f95ec4bded6c7eba) ("Added images and started the desing document"): build for the functional cases and P1. P2 was tested on `1fb184a`. |
-| Release / tag | None |
+| Release / tag | [`complete`](https://github.com/JpSotoSanchez/UnityQuest-Checkout/releases/tag/complete) |
 | Unity version | 6000.5.7f1 |
 | Device | Unity Editor, Play mode with the play scene (Game view resolution: `1536x2048`) |
 | Test date(s) | Usability session: 11/10/2026, about 7:27 pm. Functional cases: Sunday 11/10/2026, at night, written down while testing. |
